@@ -1,4 +1,6 @@
-# Проект на хакатон Kaspersky SECUR'IT CUP'22
+# Web приложение для оценки здоровья домашнего питомца "Tail app"
+Проект на хакатон Kaspersky SECUR'IT CUP'22
+
 Команда: **Win+ners**
 
 ## Демо:
@@ -105,8 +107,8 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-c
 ### 3. Запуск через Docker-compose
 https://webdevblog.ru/kak-ispolzovat-django-postgresql-i-docker/
 
-    git clone https://github.com/bd240897/sovcombank-hack
-    cd sovcombank-hack/
+    git clone https://github.com/bd240897/kaspersky-hack
+    cd kaspersky-hack/
     docker-compose -f docker-compose.yml up --build
 
 [:arrow_up:Оглавление](#Оглавление)
