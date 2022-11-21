@@ -1,0 +1,8 @@
+/.idea/
+/venv/
+/venv_app_cnn/
+/frontend/node_modules/
+__pycache__/
+*.pyc
+/api/core/migrations/
+/api/db.sqlite3
