@@ -290,7 +290,7 @@ class RequestPhotoFilterView(generics.GenericAPIView):
         # TODO тут он изменяет статус на
 
         example = {
-            "type" : "poop"
+            "type": "poop"
         }
 
         return Response(example, status=status.HTTP_200_OK)

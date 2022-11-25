@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'core',
     'pet',
+    'filter',
 
     'rest_framework.authtoken',
     'djoser',
