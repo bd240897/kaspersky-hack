@@ -55,10 +55,24 @@ class RequestPhoto(models.Model):
     photo = models.ImageField(verbose_name="Фото", upload_to='prediction_photo/profile') # TODO
     date_creation = models.DateTimeField(verbose_name="Дата создания", default=now, editable=False)
     diseases = models.ManyToManyField(Diseases, verbose_name="Болезни")
+    CHOICES = {
+        ('init', 'Форма создана'),
+        ('received', 'Фото получено'),
+        ('filter', 'Фильтр пройден'),
+        ('end', 'Ответ получен'),
+    }
+    status = models.CharField(verbose_name="Статус запроса", max_length=32, default="init", blank=True, choices=CHOICES)
 
     class Meta:
         verbose_name = 'Запрос с фото'
         verbose_name_plural = 'Запросы с фото'
+
+    def switch_status(self, status):
+        """Смена статуса"""
+
+        allowed_status = [i[0] for i in self.CHOICES]
+        if status in allowed_status:
+            self.status = status
 
 
 class RequestPoll(models.Model):
