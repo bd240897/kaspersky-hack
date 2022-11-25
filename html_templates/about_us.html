@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="static/temp/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="static/temp/bootstrap-vue.min.css"/>
+    <script src="static/temp/vue.js"></script>
+    <script src="static/temp/bootstrap-vue.min.js"></script>
+    <script src="static/temp/bootstrap-vue-icons.min.js"></script>
+
+</head>
+<body>
+
+<style>
+    .text-size-header {
+        font-size: 30px;
+    }
+
+    .text-size-body {
+        font-size: 21px;
+    }
+
+    .color-header {
+
+    }
+
+    .text-family-header {
+
+    }
+
+    .text-family-body {
+
+    }
+
+    .video iframe {
+        max-height: 150px;
+        width: auto;
+    }
+</style>
+
+<div id="app">
+    <!--    https://bootstrap-vue.org/docs/reference/starter-templates-->
+
+
+    <section class="main-page">
+        <b-container class=main-page__container"">
+
+            <!--
+            #######tag_map############
+            main-page
+            main-page__container
+            page_nav
+            <nav - nav_brand>
+            <... nav_toggle - nav_toggle_template - nav_toggle_template_icon>
+            <... nav_collapse - nav_nav - nav_item>
+            about_us
+            about_us__header
+            video
+            video__header
+            video__iframe
+            video__iframe__item
+            video__btn
+            video__btn__item
+            purpose
+            purpose__header
+            purpose__text
+            <list_group - list_item - icon>
+            advantage
+            advantage__header
+            advantage__text
+            <list_group - list_item - icon>
+            start
+            start__text
+            start__text
+            start__btn
+            -->
+
+https://bootstrap-vue.org/docs/components/navbar
+
+vue-material
+            https://mdbootstrap.com/docs/b4/vue/navigation/hamburger-menu/
+            <div class="page_nav mb-2">
+                <b-navbar toggleable type="dark" variant="primary">
+                    <b-navbar-brand class="ms-2" href="#">Tail app</b-navbar-brand>
+
+                    <b-navbar-toggle class="me-2" target="navbar-toggle-collapse">
+                        <template #default="{ expanded }">
+                            <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+                            <b-icon v-else icon="chevron-bar-down"></b-icon>
+                        </template>
+                    </b-navbar-toggle>
+
+                    <b-collapse id="navbar-toggle-collapse" is-nav>
+                        <b-navbar-nav class="ms-auto">
+                            <b-nav-item class="ms-2" href="#">Link 1</b-nav-item>
+                            <b-nav-item class="ms-2" href="#">Link 2</b-nav-item>
+                            <b-nav-item class="ms-2" href="#" disabled>Disabled</b-nav-item>
+                        </b-navbar-nav>
+                    </b-collapse>
+                </b-navbar>
+            </div>
+
+            <div class="about_us mb-2 border border-primary rounded-2 p-2">
+                <div class="about_us__header text-size-header text-center mb-2">
+                    О нас
+                </div>
+
+                <div class="about_us__text text-size-body mb-2">
+                    Наш проект поможет вашему питомцу всегда быть здоровым и энергичным.
+                </div>
+            </div>
+
+            <div class="video d-flex flex-column justify-content-center align-items-center mb-2 border border-primary rounded-2 p-2">
+
+                <div class="video__header text-size-header text-center mb-2">
+                    Презентация
+                </div>
+
+                <div class="video__iframe mb-2">
+                    <iframe class="video__iframe__item" width="120" src="https://www.youtube.com/embed/RqvaHJppgIk"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+                <div class="video__btn d-grid gap-2 w-100 mb-2">
+                    <b-button class="video__btn__item" block variant="primary">Присоединиться</b-button>
+                </div>
+            </div>
+
+            <div class="purpose mb-2 border border-primary rounded-2 p-2">
+                <div class="purpose__header text-size-header text-center mb-2">
+                    Наши цели
+                </div>
+
+                <div class="purpose__text text-size-body mb-2">
+                    <b-list-group>
+                        <b-list-group-item>
+                            <b-icon icon="star-fill" variant="success"></b-icon>
+                            контроль здоровья вашего питомца
+                        </b-list-group-item>
+                        <b-list-group-item>
+                            <b-icon icon="star-fill" variant="success"></b-icon>
+                            своевременное выявление заболеваний
+                        </b-list-group-item>
+                        <b-list-group-item>
+                            <b-icon icon="star-fill" variant="success"></b-icon>
+                            консультации со специалистами
+                        </b-list-group-item>
+                    </b-list-group>
+                </div>
+            </div>
+
+            <div class="advantage mb-2 border border-primary rounded-2 p-2">
+                <div class="advantage__header text-size-header text-center mb-2">
+                    Наши достоиснва
+                </div>
+
+                <div class="advantage__text text-size-body mb-2">
+                    <b-list-group>
+                        <b-list-group-item>
+                            <b-icon icon="star-fill" variant="success"></b-icon>
+                            не нужно никуда идти
+                        </b-list-group-item>
+                        <b-list-group-item>
+                            <b-icon icon="star-fill" variant="success"></b-icon>
+                            мгновенный результат
+                        </b-list-group-item>
+                        <b-list-group-item>
+                            <b-icon icon="star-fill" variant="success"></b-icon>
+                            консультация со специалистом
+                        </b-list-group-item>
+                    </b-list-group>
+                </div>
+            </div>
+
+            <div class="start mb-2 border border-primary rounded-2 p-2">
+                <div class="start__header text-size-header text-center mb-2">
+                    Быстрый старт
+                </div>
+
+                <div class="start__text text-size-body mb-3">
+                    Если вы не хотите регистрироваться а просто хотите протестировать наш фунционал вам сюда:
+                </div>
+
+                <div class="start__btn d-grid gap-2 w-100 mb-2">
+                    <b-button class="start__btn__item" block variant="primary">Сделать фото и получить ответ</b-button>
+                </div>
+            </div>
+
+        </b-container>
+    </section>
+
+</div>
+
+<script>
+    window.app = new Vue({
+        el: '#app',
+        data: {
+            name: ''
+        },
+        computed: {
+            showAlert() {
+                return this.name.length > 4 ? true : false
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

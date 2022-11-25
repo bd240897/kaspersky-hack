@@ -6,3 +6,4 @@ __pycache__/
 *.pyc
 /api/core/migrations/
 /api/db.sqlite3
+/docs/
