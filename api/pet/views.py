@@ -8,106 +8,142 @@ from rest_framework.views import APIView
 import urllib.parse
 from PIL import Image
 from django.conf import settings
-
 from .models import *
 from .serializers import *
 
-"api/v1/profile/"
-
-
-class ProfileView(generics.GenericAPIView):
-    """Профиль"""
+class ProfileListView(generics.ListAPIView):
+    """Все профили"""
 
     permission_classes = [permissions.AllowAny]
+    queryset = Profile.objects.all()
+    serializer_class = ProfileFullSerialiser
+
+
+class ProfileView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         """Получить профиль пользователя"""
 
-        example = {
-            "first_name": "Дмитрий",
-            "second_name": "Алексеевич",
-            "last_name": "Борисов",
-            "avatar": "https://pixelbox.ru/wp-content/uploads/2021/02/mult-ava-instagram-69.jpg",
-            'active': True
-        }
+        #         example = {
+        #             "first_name": "Дмитрий",
+        #             "second_name": "Алексеевич",
+        #             "last_name": "Борисов",
+        #             "avatar": "https://pixelbox.ru/wp-content/uploads/2021/02/mult-ava-instagram-69.jpg",
+        #             'active': True
+        #         }
 
-        return Response(example, status=status.HTTP_200_OK)
+        current_user = request.user
 
+        if not Profile.objects.filter(user=current_user).exists():
+            massage = f"Пользователь {current_user} еще не создал профиль"
+            return Response(massage, status=status.HTTP_404_NOT_FOUND)
 
-"api/v1/pet/"
+        current_profile = Profile.objects.get(user=current_user)
+        serializer = ProfileFullSerialiser(current_profile)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        """Соаздать профиль"""
+
+        # добавляем владелька к профилю
+        if isinstance(request.data, QueryDict):  # optional
+            request.data._mutable = True
+        current_user = request.user
+        request.data.update({"user": current_user.id})
+
+        serializer = ProfileFullSerialiser(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_200_OK)
 
 
 class PetView(generics.GenericAPIView):
-    """Питомцы"""
+    """Питомец"""
 
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = PetFullSerialiser
 
-    # https://stackoverflow.com/questions/62099191/genericapiview-should-either-include-a-serializer-class-attribute-or-override
-
-    def get(self, request):
-        """Получить список питомцев пользователя"""
-
-        id = request.POST.get('id')
-        # TODO
-
-        example = {
-            "id": 1,
-            "owner": "Дима",
-            "avatar": "https://pixelbox.ru/wp-content/uploads/2021/02/mult-ava-instagram-69.jpg",
-            "age": 10,
-            "weight": 20,
-            "breed": "Овчарка",
-            "name": "Пушок",
-        }
-        return Response(example, status=status.HTTP_200_OK)
-
     def post(self, request):
-        """Получить список питомцев пользователя"""
+        """Добавить питомца"""
 
-        # data = request.POST
+        # example = {'massage': "Данные питомца успешно обновлены"}
 
-        example = {'massage': "Данные питомца успешно обновлены"}
+        if isinstance(request.data, QueryDict):  # optional
+            request.data._mutable = True
+        current_user = request.user
+        request.data.update({"user": current_user.id})
 
-        return Response(example, status=status.HTTP_200_OK)
+        serializer = PetFullSerialiser(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
+        return Response(serializer.errors, status=status.HTTP_200_OK)
 
-"api/v1/pet/list/"
-
-
-class PetsListView(generics.GenericAPIView):
-    """Питомцы"""
-
-    permission_classes = [permissions.AllowAny]
-
+    # https://stackoverflow.com/questions/62099191/genericapiview-should-either-include-a-serializer-class-attribute-or-override
     def get(self, request):
-        """Получить список питомцев пользователя"""
+        """Получить данные 1го питомца"""
 
-        example = {"list": [
-            {
-                "id": 1,
-                "name": "Пушок",
-            },
-            {
-                "id": 2,
-                "name": "Беляш",
-            }]
-        }
+        # example = {
+        #     "id": 1,
+        #     "owner": "Дима",
+        #     "avatar": "https://pixelbox.ru/wp-content/uploads/2021/02/mult-ava-instagram-69.jpg",
+        #     "age": 10,
+        #     "weight": 20,
+        #     "breed": "Овчарка",
+        #     "name": "Пушок",
+        # }
 
-        return Response(example, status=status.HTTP_200_OK)
+        id = request.GET.get('id')
+        current_user = request.user
+
+        if not Pet.objects.filter(pk=id, user=current_user).exists():
+            massage = f"Пользователь {current_user} еще не имеет питомца с id={id}"
+            return Response(massage, status=status.HTTP_404_NOT_FOUND)
+
+        current_pet = Pet.objects.get(pk=id, user=current_user)
+        serializer = PetFullSerialiser(current_pet)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-# TODO - запросы сделать в виде отдельной табличики
+
+
+# class PetsListView(generics.GenericAPIView):
+#     """Питомцы"""
 #
-# Питомец
+#     permission_classes = [permissions.AllowAny]
 #
-# Запросы
-# FK Pet
+#     def get(self, request):
+#         """Получить список питомцев пользователя"""
 #
-# Предсказания
-# FK Request
+#         example = {"list": [
+#             {
+#                 "id": 1,
+#                 "name": "Пушок",
+#             },
+#             {
+#                 "id": 2,
+#                 "name": "Беляш",
+#             }]
+#         }
+#
+#         return Response(example, status=status.HTTP_200_OK)
 
-"api/v1/send/photo"
+
+class PetsListView(generics.ListAPIView):
+    """Список моих питомцев"""
+
+    model = Pet
+    serializer_class = PetFullSerialiser
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = Pet.objects.filter(user=self.request.user)
+        return queryset
 
 
 class RequestPhotoView(generics.GenericAPIView):

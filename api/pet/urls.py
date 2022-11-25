@@ -1,7 +1,9 @@
 from django.urls import path, include
-from .views import ProfileView, PetView, PetsListView, RequestPhotoView, RequestPollView, RequestPhotoListView, RequestListPollView
+from .views import ProfileView, PetView, PetsListView, RequestPhotoView, RequestPollView, RequestPhotoListView, \
+    RequestListPollView, ProfileListView
 
 urlpatterns = [path("profile/", ProfileView.as_view()),
+               path("profile/list/", ProfileListView.as_view()),
                path("pet/", PetView.as_view()),
                path("pet/list/", PetsListView.as_view()),
                path("request/photo/", RequestPhotoView.as_view()),

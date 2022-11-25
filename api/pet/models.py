@@ -7,9 +7,9 @@ from django.utils.timezone import now
 class Profile(models.Model):
     """Профиль юзера"""
 
-    first_name = models.CharField(verbose_name="Имя", max_length=100, blank=True, null=True)
-    second_name = models.CharField(verbose_name="Фамилия", max_length=100, blank=True, null=True)
-    third_name = models.CharField(verbose_name="Отчество", max_length=100, blank=True, null=True)
+    name = models.CharField(verbose_name="Имя", max_length=100, blank=True, null=True)
+    # second_name = models.CharField(verbose_name="Фамилия", max_length=100, blank=True, null=True)
+    # third_name = models.CharField(verbose_name="Отчество", max_length=100, blank=True, null=True)
     avatar = models.ImageField(verbose_name="Аватарка", upload_to='core/profile', default='core/profile/avatar_default.png')
     user = models.OneToOneField(User, verbose_name="Юзер", on_delete=models.CASCADE, related_name='pet_profile_user', db_index=True)
     active = models.BooleanField(verbose_name="Статус", default=True)
@@ -26,33 +26,49 @@ class Profile(models.Model):
 class Pet(models.Model):
     """Профиль питомца"""
 
-    owner = models.ForeignKey(User, verbose_name="Владелец", on_delete=models.CASCADE, related_name='pet_owner', db_index=True)
-    name = models.CharField(verbose_name="Имя", max_length=100, blank=True, null=True)
+    user = models.ForeignKey(User, verbose_name="Владелец", on_delete=models.CASCADE, related_name='pet_owner', db_index=True)
+    name = models.CharField(verbose_name="Имя", max_length=100)
     avatar = models.ImageField(verbose_name="Аватарка", upload_to='pet/profile', default='core/profile/avatar_default.png')
-    age = models.CharField(verbose_name="Имя", max_length=100, blank=True, null=True) # TODO
-    weight = models.CharField(verbose_name="Имя", max_length=100, blank=True, null=True) # TODO
-    breed = models.CharField(verbose_name="Имя", max_length=100, blank=True, null=True)
+    age = models.CharField(verbose_name="Возраст", max_length=100, blank=True, null=True) # TODO
+    weight = models.CharField(verbose_name="Вес", max_length=100, blank=True, null=True) # TODO
+    breed = models.CharField(verbose_name="Порода", max_length=100, blank=True, null=True)
 
+
+    class Meta:
+        verbose_name = 'Питомец'
+        verbose_name_plural = 'Питомцы'
 
 class Diseases(models.Model):
     """Список болезней"""
 
-    name = models.CharField(verbose_name="Имя", max_length=100, blank=True, null=True)
-    description = models.CharField(verbose_name="Имя", max_length=100, blank=True, null=True)
+    name = models.CharField(verbose_name="Название", max_length=100, blank=True, null=True)
+    description = models.CharField(verbose_name="Описание", max_length=100, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Болезнь'
+        verbose_name_plural = 'Болезни'
 
 class RequestPhoto(models.Model):
-    """Предсказания длч питомца"""
+    """Запрос с фото"""
 
     pet = models.ForeignKey(Pet, verbose_name="Питомец", on_delete=models.CASCADE, related_name='prediction_photo_pet', db_index=True)
-    photo = models.ImageField(verbose_name="Экскоременты", upload_to='prediction_photo/profile') # TODO
+    photo = models.ImageField(verbose_name="Фото", upload_to='prediction_photo/profile') # TODO
     date_creation = models.DateTimeField(verbose_name="Дата создания", default=now, editable=False)
-    diseases = models.ManyToManyField(Diseases)
+    diseases = models.ManyToManyField(Diseases, verbose_name="Болезни")
+
+    class Meta:
+        verbose_name = 'Запрос с фото'
+        verbose_name_plural = 'Запросы с фото'
+
 
 class RequestPoll(models.Model):
-    """Предсказания длч питомца"""
+    """Запрос с опросом"""
 
     pet = models.ForeignKey(Pet, verbose_name="Питомец", on_delete=models.CASCADE, related_name='prediction_poll_pet', db_index=True)
-    photo = models.ImageField(verbose_name="Экскоременты", upload_to='prediction_photo/profile') # TODO
+    photo = models.ImageField(verbose_name="Фото", upload_to='prediction_photo/profile') # TODO
     date_creation = models.DateTimeField(verbose_name="Дата создания", default=now, editable=False)
-    diseases = models.ManyToManyField(Diseases)
+    diseases = models.ManyToManyField(Diseases, verbose_name="Болезни")
 
+    class Meta:
+        verbose_name = 'Запрос с опросом'
+        verbose_name_plural = 'Запросы с опросом'
