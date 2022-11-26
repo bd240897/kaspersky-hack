@@ -31,8 +31,8 @@ class Pet(models.Model):
     user = models.ForeignKey(User, verbose_name="Владелец", on_delete=models.CASCADE, related_name='pet_owner', db_index=True)
     name = models.CharField(verbose_name="Имя", max_length=100)
     avatar = models.ImageField(verbose_name="Аватарка", upload_to='pet/profile', default='core/profile/avatar_default.png')
-    age = models.CharField(verbose_name="Возраст", max_length=100, blank=True, null=True) # TODO
-    weight = models.CharField(verbose_name="Вес", max_length=100, blank=True, null=True) # TODO
+    age = models.CharField(verbose_name="Возраст", max_length=100, blank=True, null=True)
+    weight = models.CharField(verbose_name="Вес", max_length=100, blank=True, null=True)
     breed = models.CharField(verbose_name="Порода", max_length=100, blank=True, null=True)
 
 

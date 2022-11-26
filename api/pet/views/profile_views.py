@@ -20,7 +20,7 @@ class ProfileListView(generics.ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileFullSerialiser
 
-class ProfileView(generics.RetrieveUpdateDestroyAPIView):
+class ProfileView(generics.GenericAPIView): # RetrieveUpdateDestroy
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
@@ -35,14 +35,12 @@ class ProfileView(generics.RetrieveUpdateDestroyAPIView):
         #         }
 
         current_user = request.user
-
         if not Profile.objects.filter(user=current_user).exists():
             massage = f"Пользователь {current_user} еще не создал профиль"
             return Response(massage, status=status.HTTP_404_NOT_FOUND)
-
         current_profile = Profile.objects.get(user=current_user)
-        serializer = ProfileFullSerialiser(current_profile)
 
+        serializer = ProfileFullSerialiser(current_profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
@@ -58,5 +56,26 @@ class ProfileView(generics.RetrieveUpdateDestroyAPIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(serializer.errors, status=status.HTTP_200_OK)
+    def put(self, request, *args, **kwargs):
+        """Изменить профиль"""
+
+        current_user = request.user
+        if not Profile.objects.filter(user=current_user).exists():
+            massage = f"Пользователь {current_user} еще не создал профиль"
+            return Response(massage, status=status.HTTP_404_NOT_FOUND)
+
+        # добавили пользователя в request.data
+        if isinstance(request.data, QueryDict):
+            request.data._mutable = True
+        request.data.update({"user": current_user.id})
+
+        # получили объект профиля который будем изменять instance
+        current_profile = Profile.objects.get(user=current_user)
+
+        serializer = ProfileFullSerialiser(instance=current_profile, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
