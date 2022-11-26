@@ -3,11 +3,13 @@ from django.contrib.auth.models import User
 import requests as requests_lib
 from django.urls import reverse
 from django.utils.timezone import now
+from rest_framework import viewsets
+
 
 class Profile(models.Model):
     """Профиль юзера"""
 
-    name = models.CharField(verbose_name="Имя", max_length=100, blank=True, null=True)
+    name = models.CharField(verbose_name="Имя", max_length=100)
     # second_name = models.CharField(verbose_name="Фамилия", max_length=100, blank=True, null=True)
     # third_name = models.CharField(verbose_name="Отчество", max_length=100, blank=True, null=True)
     avatar = models.ImageField(verbose_name="Аватарка", upload_to='core/profile', default='core/profile/avatar_default.png')
@@ -86,3 +88,7 @@ class RequestPoll(models.Model):
     class Meta:
         verbose_name = 'Запрос с опросом'
         verbose_name_plural = 'Запросы с опросом'
+
+        # разные сериалайзеры для вьюсета
+        # https://stackoverflow.com/questions/24809737/how-do-i-set-different-serializer-for-list-and-detail-view-with-django-rest-fram
+        # viewsets.ModelViewSet
