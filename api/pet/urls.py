@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.urls import path, include
-from .views import ProfileView, PetView, PetsListView, RequestPhotoView, RequestPollView, RequestPhotoListView, \
+from .views.views import ProfileView, PetView, PetsListView, RequestPhotoView, RequestPollView, RequestPhotoListView, \
     RequestListPollView, ProfileListView, RequestPhotoFilterView, RequestPhotoPredictionView
 
 urlpatterns = [path("profile/", ProfileView.as_view()),
