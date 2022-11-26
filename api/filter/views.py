@@ -20,12 +20,14 @@ class RequestPhotoFilterView(generics.GenericAPIView):
     def post(self, request):
         """Отправить 1 фото"""
 
-        url = request.POST.get('url')  # id питомца
+        url = request.POST.get('url')  # url картинки
+        id = request.POST.get('id') # id запроса
 
         # TODO тут он изменяет статус на
 
         example = {
-            "type": "poop"
+            "filter": {"type": "poop"},
+            "meta_info": {"id": id, "url": url,}
         }
 
         return Response(example, status=status.HTTP_200_OK)

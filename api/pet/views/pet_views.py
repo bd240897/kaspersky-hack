@@ -63,8 +63,6 @@ class PetView(generics.GenericAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-
-
 # class PetsListView(generics.GenericAPIView):
 #     """Питомцы"""
 #

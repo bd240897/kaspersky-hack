@@ -63,15 +63,13 @@ class RequestPhotoView(generics.GenericAPIView):
         request_photo.switch_status("received")
         request_photo.save()
 
-        serializer = RequestPhotoFullSerialiser(request_photo)
+        serializer = RequestPhotoUrlSerialiser(request_photo)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
     def get(self, request):
         """Информация 1го запроса"""
-
-        id = request.POST.get('id')  # id запроса
 
         # example = {
         #     "id": 1,
@@ -88,13 +86,29 @@ class RequestPhotoView(generics.GenericAPIView):
         current_user = request.user
 
         if not RequestPhoto.objects.filter(pk=id).exists():
-            massage = f"Пользователь {current_user} еще не имеет питомца с id={id}"
+            massage = f"Пользователь {current_user} еще не имеет запрос с id={id}"
             return Response(massage, status=status.HTTP_404_NOT_FOUND)
 
         request_photo = RequestPhoto.objects.get(pk=id)
-        serializer = RequestPhotoFullSerialiser(request_photo)
+        serializer = RequestPhotoUrlSerialiser(request_photo)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def delete(self, request, *args, **kwargs):
+
+        id = request.GET.get('id')
+        current_user = request.user
+
+        if not RequestPhoto.objects.filter(pk=id).exists():
+            massage = f"Пользователь {current_user} не имеет запрос с id={id}"
+            return Response(massage, status=status.HTTP_404_NOT_FOUND)
+
+        request_photo = RequestPhoto.objects.get(pk=id) # instance
+        # удалить изображение
+        request_photo.photo.delete(save=False)
+        # удалить весь запрос
+        request_photo.delete()
+
+        return Response(f"Request with id={id} has been deleted", status=status.HTTP_200_OK)
 
 class RequestPhotoListView(generics.GenericAPIView):
     """Список запросов с фотографиями"""
@@ -106,7 +120,6 @@ class RequestPhotoListView(generics.GenericAPIView):
         """Получить"""
 
         pet_id = request.data.get('id')  # id питомца
-        pet_id = 1
         current_user = request.user
 
         if not Pet.objects.filter(pk=pet_id).exists():
@@ -114,11 +127,8 @@ class RequestPhotoListView(generics.GenericAPIView):
             return Response(massage, status=status.HTTP_404_NOT_FOUND)
 
         pet = Pet.objects.get(id=pet_id)
-
-
         pet_list = RequestPhoto.objects.filter(pet=pet) # все запросы для конкретного питомца
-
-        serializer = RequestPhotoFullSerialiser(pet_list, many=True)
+        serializer = RequestPhotoUrlSerialiser(pet_list, many=True)
 
         # example = {'list': [
         #     {"id": 1,
@@ -152,27 +162,37 @@ class RequestPhotoFilterView(generics.GenericAPIView):
     def post(self, request):
         """Отправить 1 фото"""
 
-        url = request.POST.get('url')  # id питомца
-        # FILTER_URL = 'http://127.0.0.1:8000/api/filter/'
-        # запрос на микросервис
-        response = requests.post(settings.FILTER_URL, data={'url': 'http://example.com'}).json()
+        # принимаем данные
+        id_request = request.POST.get('id') # id запроса
+        current_user = request.user
 
-        #
-        # # TODO тут он изменяет статус на
-        #
+        # получаем запрос и достаем url фотки
+        if not RequestPhoto.objects.filter(pk=id_request).exists():
+            massage = f"Пользователь {current_user} еще не имеет запроса с id={id_request}"
+            return Response(massage, status=status.HTTP_404_NOT_FOUND)
+        current_request = RequestPhoto.objects.get(pk=id_request)
+
+        # проверка входных данных
+        serializer = MicroserviceIdSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # прогоним через сериалазер чтоб получить полный url
+        serializer = RequestPhotoUrlSerialiser(current_request)
+        url = serializer.data.get("photo")
+
+        # запрос на микросервис
+        response = requests.post(settings.FILTER_URL, data={'url': url, 'id': id_request}).json()
+
+        # меняем статус
+        current_request.switch_status("filter")
+
         # example = {
         #     "type": "poop"
         # }
 
         return Response(response, status=status.HTTP_200_OK)
 
-
-
-
-# def django_view(request):
-#     # get the response from the URL
-#     response = requests.get('http://example.com')
-#     return HttpResponse(response.text)
 
 class RequestPhotoPredictionView(generics.GenericAPIView):
     """Отправить полученное фото на предсказание"""
@@ -183,10 +203,35 @@ class RequestPhotoPredictionView(generics.GenericAPIView):
     def post(self, request):
         """Отправить 1 фото"""
 
-        url = request.POST.get('url')  # id питомца
+        # принимаем данные
+        id_request = request.POST.get('id') # id запроса
+        current_user = request.user
+
+        # проверка входных данных
+        serializer = MicroserviceIdSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # получаем запрос и достаем url фотки
+        if not RequestPhoto.objects.filter(pk=id_request).exists():
+            massage = f"Пользователь {current_user} еще не имеет запроса с id={id_request}"
+            return Response(massage, status=status.HTTP_404_NOT_FOUND)
+        current_request = RequestPhoto.objects.get(pk=id_request)
+
+        # прогоним через сериалазер чтоб получить полный url
+        serializer = RequestPhotoUrlSerialiser(current_request)
+        url = serializer.data.get("photo")
+
         # запрос на микросервис
-        # PREDICTOR_URL = 'http://127.0.0.1:8000/api/predictor/'
-        response = requests.post(settings.PREDICTOR_URL, data={'url': 'http://example.com'}).json()
+        response = requests.post(settings.PREDICTOR_URL, data={'url': url, 'id': id_request}).json()
+        current_request.switch_status("predictor")
+
+        # меняем статус
+        if id_request:
+            if not RequestPhoto.objects.filter(pk=id_request).exists():
+                massage = f"Пользователь {current_user} еще запроса с id={id_request}"
+                return Response(massage, status=status.HTTP_404_NOT_FOUND)
+            RequestPhoto.objects.get(pk=id_request).switch_status("predictor")
 
         # example = {
         #     "blood": True,
@@ -196,3 +241,55 @@ class RequestPhotoPredictionView(generics.GenericAPIView):
         return Response(response, status=status.HTTP_200_OK)
 
 
+class QuickPhotoPredictionView(generics.GenericAPIView):
+    """Быстрая проверка фотки"""
+
+    permission_classes = [permissions.AllowAny]
+    serializer_class = RequestPhotoFullSerialiser
+
+    def post(self, request):
+        """Отправить 1 фото"""
+
+        # получаем фото
+        file = request.data.get('file')  # file
+
+        # проверка
+        if not file:
+            raise ParseError("Empty content")
+
+        # открытие
+        try:
+            img = Image.open(file)
+            img.verify()
+        except:
+            raise ParseError("Unsupported image type")
+
+        # cохраняем в БД
+        current_request = QuickRequestPhoto(photo=file)
+        current_request.switch_status("received")
+        current_request.save()
+
+        # достаем id запроса
+        id_request = current_request.id
+
+        # достаем URL
+        serializer = QuickRequestPhotoUrlSerialiser(current_request)
+        url = serializer.data.get("photo")
+
+        # отправляем на сервис-1
+        response_filter = requests.post(settings.FILTER_URL, data={'url': url, 'id': id_request}).json()
+        current_request.switch_status("filter")
+
+        # отправляем на сервис-2
+        response_predictor = requests.post(settings.PREDICTOR_URL, data={'url': url, 'id': id_request}).json()
+        current_request.switch_status("predictor")
+
+        # собираем ответ
+        response = {"filter": response_filter, "predictor": response_predictor}
+
+        # удаляем фото из БД
+        current_request.photo.delete(save=False)
+        current_request.delete()
+
+        # отдаем ответ
+        return Response(response, status=status.HTTP_200_OK)

@@ -212,3 +212,4 @@ CORS_ALLOW_CREDENTIALS = True
 
 FILTER_URL = 'http://127.0.0.1:8000/api/filter/'
 PREDICTOR_URL = 'http://127.0.0.1:8000/api/predictor/'
+HOST_URL = 'http://127.0.0.1:8000'

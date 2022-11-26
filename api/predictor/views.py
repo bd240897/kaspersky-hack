@@ -31,18 +31,25 @@ class RequestPhotoPredictorView(generics.GenericAPIView):
     def post(self, request):
         """Отправить 1 фото"""
 
-        url = request.POST.get('url')  # id питомца
+        # получаем данные
+        url = request.POST.get('url')  # url картинки
+        id = request.POST.get('id') # id запроса
 
-        # TODO тут он изменяет статус на
-
+        # вызываем сетки
         answer_blood_cnn = blood_cnn()
         answer_parasite_cnn = parasite_cnn()
 
+        # склеиваем ответы
         full_answer = {**answer_blood_cnn, **answer_parasite_cnn}
+
+        example = {
+            "predictor": full_answer,
+            "meta_info": {"id": id, "url": url}
+        }
 
         # example = {
         #     "blood": True,
         #     "parasites": False
         # }
 
-        return Response(full_answer, status=status.HTTP_200_OK)
+        return Response(example, status=status.HTTP_200_OK)

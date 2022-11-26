@@ -69,3 +69,8 @@ class PetViewSet(viewsets.ModelViewSet):
 
 
 
+# сделать 2 функции
+# pet/instance/
+# get_one, delete, update
+# pet/
+# list, crate
