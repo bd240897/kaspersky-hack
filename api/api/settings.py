@@ -204,3 +204,11 @@ EMAIL_HOST_PASSWORD = 'Пароль который вы только тчо по
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+
+
+###################################
+# МИКРОСЕРВИСЫ
+###################################
+
+FILTER_URL = 'http://127.0.0.1:8000/api/filter/'
+PREDICTOR_URL = 'http://127.0.0.1:8000/api/predictor/'

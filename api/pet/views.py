@@ -8,6 +8,8 @@ from rest_framework.views import APIView
 import urllib.parse
 from PIL import Image
 from django.conf import settings
+import requests
+
 from .models import *
 from .serializers import *
 
@@ -286,14 +288,26 @@ class RequestPhotoFilterView(generics.GenericAPIView):
         """Отправить 1 фото"""
 
         url = request.POST.get('url')  # id питомца
+        # FILTER_URL = 'http://127.0.0.1:8000/api/filter/'
+        # запрос на микросервис
+        response = requests.post(settings.FILTER_URL, data={'url': 'http://example.com'}).json()
 
-        # TODO тут он изменяет статус на
+        #
+        # # TODO тут он изменяет статус на
+        #
+        # example = {
+        #     "type": "poop"
+        # }
 
-        example = {
-            "type": "poop"
-        }
+        return Response(response, status=status.HTTP_200_OK)
 
-        return Response(example, status=status.HTTP_200_OK)
+
+
+
+# def django_view(request):
+#     # get the response from the URL
+#     response = requests.get('http://example.com')
+#     return HttpResponse(response.text)
 
 class RequestPhotoPredictionView(generics.GenericAPIView):
     """Отправить полученное фото на предсказание"""
@@ -305,24 +319,16 @@ class RequestPhotoPredictionView(generics.GenericAPIView):
         """Отправить 1 фото"""
 
         url = request.POST.get('url')  # id питомца
+        # запрос на микросервис
+        # PREDICTOR_URL = 'http://127.0.0.1:8000/api/predictor/'
+        response = requests.post(settings.PREDICTOR_URL, data={'url': 'http://example.com'}).json()
 
-        example = {
-            "blood": True,
-            "parasites": False
-        }
+        # example = {
+        #     "blood": True,
+        #     "parasites": False
+        # }
 
-        return Response(example, status=status.HTTP_200_OK)
-
-
-
-
-
-
-
-
-
-
-
+        return Response(response, status=status.HTTP_200_OK)
 
 
 
