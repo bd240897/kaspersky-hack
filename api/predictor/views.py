@@ -11,14 +11,37 @@ from django.conf import settings
 from .models import *
 from .serializers import *
 
+# это моя нейронка
+from .ml_models.blood_alexnet.BaselineClass import BaseLine as Blood_baseline
+from .ml_models.parasites_alexnet.BaselineClass import BaseLine as Parasites_baseline
 
-def blood_cnn(url="default_url"):
-    answer = {"blood": True}
+
+
+def blood_cnn(url):
+    """Предсказание крови"""
+
+    # подгружаем модель
+    model = Blood_baseline()
+
+    # делаем предсказание и ловим исключения в случае ошибки модели
+    prediction = model.predict_file(url=url)
+
+    # получаем ответ
+    answer = {"blood": prediction}
     return answer
 
 
-def parasite_cnn(url="default_url"):
-    answer = {"parasite": False}
+def parasite_cnn(url):
+    """Предсказание паразитов"""
+
+    # подгружаем модель
+    model = Parasites_baseline()
+
+    # делаем предсказание
+    prediction = model.predict_file(url=url)
+
+    # получаем ответ
+    answer = {"parasite": prediction}
     return answer
 
 
@@ -35,9 +58,16 @@ class RequestPhotoPredictorView(generics.GenericAPIView):
         url = request.POST.get('url')  # url картинки
         id = request.POST.get('id') # id запроса
 
+        # проверки
+        if not url:
+            return Response("Вы не передали URL картинки!", status=status.HTTP_400_BAD_REQUEST)
+
         # вызываем сетки
-        answer_blood_cnn = blood_cnn()
-        answer_parasite_cnn = parasite_cnn()
+        try:
+            answer_parasite_cnn = parasite_cnn(url)
+            answer_blood_cnn = blood_cnn(url)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
         # склеиваем ответы
         full_answer = {**answer_blood_cnn, **answer_parasite_cnn}
