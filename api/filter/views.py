@@ -17,7 +17,7 @@ from django.shortcuts import render
 from django.views import View
 
 # это моя нейронка
-from .ml_alexnet.BaselineClass import BaseLine
+from .ml_models.ml_alexnet.BaselineClass import BaseLine
 
 class RequestPhotoFilterView(generics.GenericAPIView):
     """Отправить полученное фото на фильтр"""
@@ -32,9 +32,18 @@ class RequestPhotoFilterView(generics.GenericAPIView):
         url = request.POST.get('url')  # url картинки
         id = request.POST.get('id') # id запроса
 
+        # проверки
+        if not url:
+            return Response("Вы не передали URL картинки!", status=status.HTTP_400_BAD_REQUEST)
+
         # предсказание нейронки
         model = BaseLine()
-        prediction = model.predict_file(url=url)
+
+        # делаем предсказание и ловим исключения в случае ошибки модели
+        try:
+            prediction = model.predict_file(url=url)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
         example = {
             "filter": {"type": prediction},
@@ -42,23 +51,5 @@ class RequestPhotoFilterView(generics.GenericAPIView):
         }
 
         return Response(example, status=status.HTTP_200_OK)
-
-
-class FilterOnUrl(generics.GenericAPIView):
-
-    def get(self, request, *args,  **kwargs):
-
-        url = request.GET.get('url')
-        if not url:
-            return Response("Вы не передали URL картинки!", status=status.HTTP_400_BAD_REQUEST)
-        try:
-            model = BaseLine()
-            prediction = model.predict_file(url=url)
-            print(prediction)
-        except Exception as e:
-            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
-
-        return Response({"prediction": prediction})
-
 
 

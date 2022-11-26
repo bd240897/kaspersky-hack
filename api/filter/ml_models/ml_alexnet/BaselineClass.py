@@ -23,18 +23,24 @@ from PIL import Image
 # django
 from django.conf import settings
 
+# turn off warnings
+import warnings
+warnings.filterwarnings('ignore')
+
 # КОНСТАНТЫ
 if __name__ == '__main__':
-    BASE_DIR_TEMP = r"C:\Users\Дмитрий\WebstormProjects\LearnVue\api_cnn\api_cnn"
+    BASE_DIR_TEMP = r"C:\Games\Python_works\kaspersky-hack\api"
 else:
     BASE_DIR_TEMP = settings.BASE_DIR
 
-APP_NAME_TEMP = 'filter'
-PATH_MODEL_WEIGHTS = os.path.join(BASE_DIR_TEMP, APP_NAME_TEMP, "ml_alexnet", 'alexnet_waights.pth')
-print(PATH_MODEL_WEIGHTS)
+APP_NAME = 'filter'
+FOLDER_NAME = 'ml_models'
+PATH_MODEL_WEIGHTS = os.path.join(BASE_DIR_TEMP, APP_NAME, FOLDER_NAME, "ml_alexnet", 'alexnet_waights.pth')
 IMG_URL = "https://p.calameoassets.com/160810152536-3dbd84e9398a3a4ccc1ad50cb4651692/p1.jpg"
 
 class BaseLine():
+    """Фильтр. Получает ссылку на фото jpg и дает предсказание 1го из 2х классов"""
+
     def __init__(self):
         self.get_map_labels()
         self.get_transformer()
