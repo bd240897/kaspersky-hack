@@ -184,6 +184,11 @@ class RequestPhotoFilterView(generics.GenericAPIView):
         # запрос на микросервис
         response = requests.post(settings.FILTER_URL, data={'url': url, 'id': id_request}).json()
 
+        # обработали данные  с фильтра и достали тип
+        # TODO unused - логика обработки будет на фронте или в таблицу запишем?
+        serializer_data = FilterSerialiser(response.get("filter")).data
+        type = serializer_data["type"]
+
         # меняем статус
         current_request.switch_status("filter")
 
@@ -226,7 +231,14 @@ class RequestPhotoPredictionView(generics.GenericAPIView):
         response = requests.post(settings.PREDICTOR_URL, data={'url': url, 'id': id_request}).json()
         current_request.switch_status("predictor")
 
-        # меняем статус
+        # парсим запрос и добавляем болезни в таблицу
+        predictor_serializer_data = PredictorSerialiser(response.get("predictor")).data
+        for key, value in predictor_serializer_data.items():
+            if value:
+                disease = Diseases.objects.get(label=key)
+                current_request.diseases.add(disease)
+
+        # меняем статус запроса
         if id_request:
             if not RequestPhoto.objects.filter(pk=id_request).exists():
                 massage = f"Пользователь {current_user} еще запроса с id={id_request}"
@@ -238,7 +250,10 @@ class RequestPhotoPredictionView(generics.GenericAPIView):
         #     "parasites": False
         # }
 
-        return Response(response, status=status.HTTP_200_OK)
+        # отдаем весь запрос TODO сделать в виде списка болезней!
+        request_serializer_data = RequestPhotoUrlSerialiser(current_request).data
+
+        return Response(request_serializer_data, status=status.HTTP_200_OK)
 
 
 class QuickPhotoPredictionView(generics.GenericAPIView):
@@ -284,12 +299,42 @@ class QuickPhotoPredictionView(generics.GenericAPIView):
         response_predictor = requests.post(settings.PREDICTOR_URL, data={'url': url, 'id': id_request}).json()
         current_request.switch_status("predictor")
 
+        # парсим запрос и добавляем болезни в таблицу
+        predictor_serializer_data = PredictorSerialiser(response_predictor.get("predictor")).data
+        for key, value in predictor_serializer_data.items():
+            if value:
+                disease = Diseases.objects.get(label=key)
+                current_request.diseases.add(disease)
+
+        # получаем список болезней
+        diseases_list = current_request.diseases.all()
+        diseases_serializer_data = DiseasesFullSerialiser(diseases_list, many=True).data
+
         # собираем ответ
-        response = {"filter": response_filter, "predictor": response_predictor}
+        # response = {"filter": response_filter, "predictor": response_predictor}
 
         # удаляем фото из БД
         current_request.photo.delete(save=False)
         current_request.delete()
 
-        # отдаем ответ
-        return Response(response, status=status.HTTP_200_OK)
+        # отдаем ответ в виде списка болезней
+        return Response(diseases_serializer_data, status=status.HTTP_200_OK)
+
+
+class RequestPhotoDiseasesView(generics.GenericAPIView):
+
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        id = request.GET.get('id')
+        current_user = request.user
+
+        if not RequestPhoto.objects.filter(pk=id).exists():
+            massage = f"Пользователь {current_user} еще не имеет запрос с id={id}"
+            return Response(massage, status=status.HTTP_404_NOT_FOUND)
+
+        request_photo = RequestPhoto.objects.get(pk=id)
+        diseases_list = request_photo.diseases.all()
+        serializer = DiseasesFullSerialiser(diseases_list, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)

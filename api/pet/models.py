@@ -43,6 +43,7 @@ class Pet(models.Model):
 class Diseases(models.Model):
     """Список болезней"""
 
+    label = models.CharField(verbose_name="Короткое название", max_length=100)
     name = models.CharField(verbose_name="Название", max_length=100, blank=True, null=True)
     description = models.CharField(verbose_name="Описание", max_length=100, blank=True, null=True)
 

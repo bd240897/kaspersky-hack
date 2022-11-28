@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.urls import path, include
 
-from .views.request_photo_views import QuickPhotoPredictionView
+from .views.request_photo_views import QuickPhotoPredictionView, RequestPhotoDiseasesView
 from .views.views import ProfileView, PetView, PetsListView, RequestPhotoView, RequestPollView, RequestPhotoListView, \
     RequestListPollView, ProfileListView, RequestPhotoFilterView, RequestPhotoPredictionView
 
@@ -15,6 +15,7 @@ urlpatterns = [path("profile/", ProfileView.as_view()),
                path("request/photo/filter/", RequestPhotoFilterView.as_view()),  # отравить запро на фильтр
                path("request/photo/predictor/", RequestPhotoPredictionView.as_view()),  # отравить запро на фильтр
                path("request/photo/list/", RequestPhotoListView.as_view()),
+               path("request/photo/diseases/", RequestPhotoDiseasesView.as_view()),
 
                # запрос с опросом
                path("request/poll/", RequestPollView.as_view()),
