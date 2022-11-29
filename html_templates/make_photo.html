@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="static/temp/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="static/temp/bootstrap-vue.min.css"/>
+    <script src="static/temp/vue.js"></script>
+    <script src="static/temp/bootstrap-vue.min.js"></script>
+    <script src="static/temp/bootstrap-vue-icons.min.js"></script>
+
+</head>
+<body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    html, body {
+        height: 100%;
+    }
+
+    .text-size-header {
+        font-size: 30px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+    }
+
+    .text-size-body {
+        font-size: 21px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+    }
+
+    .bg-green {
+        background-color: #00A88E;
+    }
+
+    .img__container__item{
+        max-width: 350px;
+        height: auto;
+    }
+</style>
+
+<div id="app" class="">
+    <section class="make_photo">
+        <div class="container ">
+
+            <div class="make__header text-center text-size-header mb-4">
+                Инструкция как фотографировать
+            </div>
+
+            <div class="make__body text-size-body  mb-4">
+                Сделайте фотографию эксорементов вашего питмоца так же как на рисунке с примером. Затем загрузитет
+                фотографию в форму ниже и нажимите кнопку отправить.
+            </div>
+
+            <div class="make__img mb-4">
+                <div class="img__header text-size-body text-center fw-bold">
+                    Превью фото
+                </div>
+                <div class="img__container d-flex justify-content-center">
+                    <img class="img__container__item w-100" src="http://dummyimage.com/400"/>
+                </div>
+            </div>
+
+            <div class="make__form w-100 mb-2 border border-primary p-2 rounded">
+                <div class="form__photo mb-2">
+                    <label for="formFile" class="form-label">Загрузить фото</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+
+                <div class="form__button my-2">
+                    <button class="button_item btn btn-primary w-100" type="submit">Отправить</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+
+
+    window.app = new Vue({
+        el: '#app',
+        data: {
+            name: ''
+        },
+        computed: {
+            showAlert() {
+                return this.name.length > 4 ? true : false
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

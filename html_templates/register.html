@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="static/temp/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="static/temp/bootstrap-vue.min.css"/>
+    <script src="static/temp/vue.js"></script>
+    <script src="static/temp/bootstrap-vue.min.js"></script>
+    <script src="static/temp/bootstrap-vue-icons.min.js"></script>
+
+</head>
+<body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    html, body {
+        height: 100%;
+    }
+
+    .text-size-header {
+        font-size: 30px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+    }
+
+    .text-size-body {
+        font-size: 21px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+    }
+
+    .bg-green {
+        background-color: #00A88E;
+    }
+</style>
+
+<div id="app" class="h-100">
+    <section class="login h-100">
+        <div class="container d-flex flex-column align-items-center justify-content-center h-100">
+            <div class="login__header text-center">
+                Tail app
+            </div>
+
+            <div class="login__form w-100">
+                <div class="form__email form-group my-2">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           placeholder="Логин">
+                </div>
+
+                <div class="form__password form-group mb-2">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
+                </div>
+
+                <div class="form__repeat_password form-group mb-2">
+                    <input type="password" class="form-control" id="exampleInputPassword2"
+                           placeholder="Повторите пароль">
+                </div>
+
+                <div class="form__button mb-2">
+                    <button class="button_item btn btn-primary w-100" type="submit">Зарегистрироваться</button>
+                </div>
+
+                <p class="form_text_or text-center mb-2">или</p>
+
+                <div class="form__button mb-2">
+                    <button class="button_item btn btn-primary w-100" type="submit">Войти</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+
+
+    window.app = new Vue({
+        el: '#app',
+        data: {
+            name: ''
+        },
+        computed: {
+            showAlert() {
+                return this.name.length > 4 ? true : false
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -14,12 +14,18 @@
 <body>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
     .text-size-header {
         font-size: 30px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
     }
 
     .text-size-body {
         font-size: 21px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
     }
 
     .color-header {
@@ -35,8 +41,8 @@
     }
 
     .video iframe {
-        max-height: 150px;
-        width: auto;
+        /*height: auto;*/
+        /*width: 100%;*/
     }
 </style>
 
@@ -76,11 +82,10 @@
             start__text
             start__btn
             -->
+<!--vue-material-->
+<!--https://bootstrap-vue.org/docs/components/navbar-->
+<!--https://mdbootstrap.com/docs/b4/vue/navigation/hamburger-menu/-->
 
-https://bootstrap-vue.org/docs/components/navbar
-
-vue-material
-            https://mdbootstrap.com/docs/b4/vue/navigation/hamburger-menu/
             <div class="page_nav mb-2">
                 <b-navbar toggleable type="dark" variant="primary">
                     <b-navbar-brand class="ms-2" href="#">Tail app</b-navbar-brand>
@@ -118,12 +123,14 @@ vue-material
                     Презентация
                 </div>
 
-                <div class="video__iframe mb-2">
-                    <iframe class="video__iframe__item" width="120" src="https://www.youtube.com/embed/RqvaHJppgIk"
+                <div class="video__iframe mb-2 embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item"
+                            width="350" height="196" src="https://www.youtube.com/embed/eeIgIrCFGTs"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                 </div>
+
                 <div class="video__btn d-grid gap-2 w-100 mb-2">
                     <b-button class="video__btn__item" block variant="primary">Присоединиться</b-button>
                 </div>
