@@ -1,0 +1,176 @@
+[
+{
+  "model": "pet.profile",
+  "pk": 1,
+  "fields": {
+    "name": "AmidAmid",
+    "avatar": "core/profile/avatar_default.png",
+    "user": 1,
+    "active": true,
+    "date_creation": "2022-11-25T19:33:20.767Z"
+  }
+},
+{
+  "model": "pet.pet",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "name": "Name1",
+    "avatar": "core/profile/avatar_default.png",
+    "age": "5",
+    "weight": "25",
+    "breed": "Овчарка"
+  }
+},
+{
+  "model": "pet.pet",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "name": "Пушок",
+    "avatar": "core/profile/avatar_default.png",
+    "age": "5",
+    "weight": "25",
+    "breed": "Овчарка"
+  }
+},
+{
+  "model": "pet.pet",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "name": "Пушок2",
+    "avatar": "core/profile/avatar_default.png",
+    "age": null,
+    "weight": null,
+    "breed": null
+  }
+},
+{
+  "model": "pet.diseases",
+  "pk": 1,
+  "fields": {
+    "label": "blood",
+    "name": "Кровь",
+    "description": "Просто описание"
+  }
+},
+{
+  "model": "pet.diseases",
+  "pk": 2,
+  "fields": {
+    "label": "parasite",
+    "name": "Паразиты",
+    "description": "Просто описание 2"
+  }
+},
+{
+  "model": "pet.requestphoto",
+  "pk": 2,
+  "fields": {
+    "pet": 1,
+    "photo": "prediction_photo/profile/starfield_HxozybB.png",
+    "date_creation": "2022-11-25T21:07:33.736Z",
+    "status": "predictor",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.requestphoto",
+  "pk": 3,
+  "fields": {
+    "pet": 1,
+    "photo": "prediction_photo/profile/starfield_CrtLqkr.png",
+    "date_creation": "2022-11-25T21:46:30.229Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.requestphoto",
+  "pk": 4,
+  "fields": {
+    "pet": 1,
+    "photo": "prediction_photo/profile/starfield_ul4V3s8.png",
+    "date_creation": "2022-11-25T21:47:26.555Z",
+    "status": "received",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.requestphoto",
+  "pk": 5,
+  "fields": {
+    "pet": 1,
+    "photo": "prediction_photo/profile/starfield_ruyjXvH.png",
+    "date_creation": "2022-11-26T19:57:32.595Z",
+    "status": "received",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.requestphoto",
+  "pk": 6,
+  "fields": {
+    "pet": 1,
+    "photo": "prediction_photo/profile/starfield.png",
+    "date_creation": "2022-11-26T20:13:08.003Z",
+    "status": "received",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.requestphoto",
+  "pk": 7,
+  "fields": {
+    "pet": 1,
+    "photo": "prediction_photo/profile/1.JPG",
+    "date_creation": "2022-11-26T21:28:43.400Z",
+    "status": "predictor",
+    "diseases": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 1,
+  "fields": {
+    "photo": "prediction_photo/profile/starfield_xhdXCrK.png",
+    "date_creation": "2022-11-26T20:48:39.385Z",
+    "status": "received",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 2,
+  "fields": {
+    "photo": "prediction_photo/profile/starfield_B8b7c6i.png",
+    "date_creation": "2022-11-26T20:49:52.656Z",
+    "status": "predictor",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 3,
+  "fields": {
+    "photo": "prediction_photo/profile/starfield_3lWZTWU.png",
+    "date_creation": "2022-11-26T20:50:47.832Z",
+    "status": "predictor",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 5,
+  "fields": {
+    "photo": "prediction_photo/profile/1_fnvUG8h.JPG",
+    "date_creation": "2022-11-28T20:34:52.299Z",
+    "status": "predictor",
+    "diseases": []
+  }
+}
+]

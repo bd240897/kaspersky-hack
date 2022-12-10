@@ -1,4 +1,10 @@
 
+    python -Xutf8 manage.py dumpdata auth.user --indent 2 > database_example/user.json
+    python -Xutf8 manage.py dumpdata core --indent 2 > database_example/core.json
+    python -Xutf8 manage.py dumpdata pet --indent 2 > database_example/pet.json
+
+
+
 ########################### VUE AUTH ##################################33
 
 # Django rest framework + vue js на русском - token, список комнат, реализация выхода - урок 6

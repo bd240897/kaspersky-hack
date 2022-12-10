@@ -4,3 +4,7 @@ django-cors-headers==3.10.1
 djangorestframework==3.13.1
 Pillow==8.4.0
 djoser==2.1.0
+
+# to CNN
+torch==1.13.0
+torchvision==0.14.0
