@@ -49,7 +49,7 @@ class BaseLine():
 
     def get_map_labels(self):
         # декодированием меток
-        self.map_labels = ['true', 'false']
+        self.map_labels = ['false', 'true']
 
     def get_transformer(self):
         # трансформация входных данных

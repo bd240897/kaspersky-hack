@@ -13,6 +13,7 @@ import requests
 from ..models import *
 from ..serializers import *
 
+
 class RequestPhotoView(generics.GenericAPIView):
     """Запрос с фотографией"""
 
@@ -37,7 +38,7 @@ class RequestPhotoView(generics.GenericAPIView):
     def post(self, request):
         """Получение данных и описания"""
         # парсим запрос
-        pet_id = request.data.get('id') # id
+        pet_id = request.data.get('id')  # id
         file = request.data.get('file')  # file
 
         current_user = request.user
@@ -66,7 +67,6 @@ class RequestPhotoView(generics.GenericAPIView):
         serializer = RequestPhotoUrlSerialiser(request_photo)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
 
     def get(self, request):
         """Информация 1го запроса"""
@@ -102,13 +102,14 @@ class RequestPhotoView(generics.GenericAPIView):
             massage = f"Пользователь {current_user} не имеет запрос с id={id}"
             return Response(massage, status=status.HTTP_404_NOT_FOUND)
 
-        request_photo = RequestPhoto.objects.get(pk=id) # instance
+        request_photo = RequestPhoto.objects.get(pk=id)  # instance
         # удалить изображение
         request_photo.photo.delete(save=False)
         # удалить весь запрос
         request_photo.delete()
 
         return Response(f"Request with id={id} has been deleted", status=status.HTTP_200_OK)
+
 
 class RequestPhotoListView(generics.GenericAPIView):
     """Список запросов с фотографиями"""
@@ -127,7 +128,7 @@ class RequestPhotoListView(generics.GenericAPIView):
             return Response(massage, status=status.HTTP_404_NOT_FOUND)
 
         pet = Pet.objects.get(id=pet_id)
-        pet_list = RequestPhoto.objects.filter(pet=pet) # все запросы для конкретного питомца
+        pet_list = RequestPhoto.objects.filter(pet=pet)  # все запросы для конкретного питомца
         serializer = RequestPhotoUrlSerialiser(pet_list, many=True)
 
         # example = {'list': [
@@ -152,7 +153,6 @@ class RequestPhotoListView(generics.GenericAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-
 class RequestPhotoFilterView(generics.GenericAPIView):
     """Отправить полученное фото на фильтр"""
 
@@ -163,7 +163,7 @@ class RequestPhotoFilterView(generics.GenericAPIView):
         """Отправить 1 фото"""
 
         # принимаем данные
-        id_request = request.POST.get('id') # id запроса
+        id_request = request.POST.get('id')  # id запроса
         current_user = request.user
 
         # получаем запрос и достаем url фотки
@@ -209,7 +209,7 @@ class RequestPhotoPredictionView(generics.GenericAPIView):
         """Отправить 1 фото"""
 
         # принимаем данные
-        id_request = request.POST.get('id') # id запроса
+        id_request = request.POST.get('id')  # id запроса
         current_user = request.user
 
         # проверка входных данных
@@ -295,6 +295,13 @@ class QuickPhotoPredictionView(generics.GenericAPIView):
         response_filter = requests.post(settings.FILTER_URL, data={'url': url, 'id': id_request}).json()
         current_request.switch_status("filter")
 
+        # TODO это может быть узким местом
+        # если на фото не нужная картинка отправим ответ вида
+        answer_response_filter = response_filter.get("filter").get("type")  # {"filter": {"type": "other" },}
+        if answer_response_filter == "other":
+            massage = {"detail" : "На фото poops не обнаружено или их плох видно!"}
+            return Response(massage, status=status.HTTP_400_BAD_REQUEST)
+
         # отправляем на сервис-2
         response_predictor = requests.post(settings.PREDICTOR_URL, data={'url': url, 'id': id_request}).json()
         current_request.switch_status("predictor")
@@ -322,7 +329,6 @@ class QuickPhotoPredictionView(generics.GenericAPIView):
 
 
 class RequestPhotoDiseasesView(generics.GenericAPIView):
-
     permission_classes = [permissions.AllowAny]
 
     def get(self, request):

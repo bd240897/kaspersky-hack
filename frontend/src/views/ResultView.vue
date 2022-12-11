@@ -14,33 +14,17 @@
           <div class="">
             <div class="text-size-body fw-bold text-center mb-3">Мы считаем что у вашего питомца:</div>
 
+
             <DiseaseItem
+                v-if="diseases"
                 v-for="disease in diseases"
                 :disease="disease"
             />
 
+            <DiseaseItemHealthy
+                v-else
+            />
 
-<!--            <div v-for="disease in diseases"-->
-<!--                 class="prediction__element border border-3 border-primary rounded p-2 mb-3">-->
-<!--              <div class="row">-->
-<!--                <div class="element__icon col-2 h1 d-flex justify-content-center align-items-center">-->
-<!--                  <b-icon icon="exclamation-circle-fill" variant="warning"></b-icon>-->
-<!--                </div>-->
-<!--                <div class="element__icon__body col-10 d-flex flex-column justify-content-center align-items-center">-->
-<!--                  <div class="element__icon__body__disease fw-bold h2">-->
-<!--                    {{ disease.name }}-->
-<!--                  </div>-->
-<!--                  <div class="element__icon__body__description col-12">-->
-<!--                    {{ disease.description }}-->
-<!--                  </div>-->
-<!--                </div>-->
-
-<!--              </div>-->
-<!--              <div>-->
-
-<!--              </div>-->
-
-<!--            </div>-->
           </div>
         </div>
       </div>
@@ -93,31 +77,6 @@
       </div>
     </div>
 
-
-    <!--    <div class="page">-->
-    <!--      <button сlass="show-modal-button" @click="showModal">Показать модальное окно</button>-->
-    <!--      <modal-window-2 ref="modal"></modal-window-2>-->
-    <!--    </div>-->
-
-    <div class="page">
-      <button сlass="show-modal-button" @click="showModal">Показать модальное окно</button>
-<!--      <modal-window ref="modal"></modal-window>-->
-      <modal-window ref="modal">
-        <template v-slot:title>
-          <h3 class="modal-title">Добавить отзыв</h3>
-        </template>
-        <template v-slot:body>
-                <textarea class="modal-textarea"
-                          placeholder="Добавьте отзыв">
-                </textarea>
-        </template>
-
-      </modal-window>
-
-
-    </div>
-
-
   </section>
 
 
@@ -126,17 +85,15 @@
 <script>
 import goToSomewhere from "@/mixins/goToSomewhere";
 import {mapActions, mapState} from "vuex";
-import ModalWindow from '../components/modal-window.vue'
-import ModalWindow2 from '../components/modal-window-2.vue'
 import DiseaseItem from "@/components/DiseaseItem";
+import DiseaseItemHealthy from "@/components/DiseaseItemHealthy";
 
 export default {
   name: "ResultView",
   mixins: [goToSomewhere],
   components: {
-    ModalWindow,
-    ModalWindow2,
     DiseaseItem,
+    DiseaseItemHealthy,
   },
   data() {
     return {}
@@ -172,41 +129,6 @@ html, body {
   font-size: 21px;
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-}
-
-.bg-green {
-  background-color: #00A88E;
-}
-
-.element__icon__body {
-  border-left: solid blue;
-}
-
-.description_disease {
-
-}
-
-.page {
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-}
-
-.modal {
-  position: fixed; /* фиксированное положение */
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5); /* цвет фона */
-  z-index: 1050;
-  opacity: 0; /* по умолчанию модальное окно прозрачно */
-  -webkit-transition: opacity 200ms ease-in;
-  -moz-transition: opacity 200ms ease-in;
-  transition: opacity 200ms ease-in; /* анимация перехода */
-  pointer-events: none; /* элемент невидим для событий мыши */
-  margin: 0;
-  padding: 0;
 }
 
 

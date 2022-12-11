@@ -2,29 +2,26 @@
 
   <modal-window ref="modal">
     <template v-slot:title>
-      <h3 class="">{{ disease.name }}</h3>
+      <h3 class="">Здоров</h3>
     </template>
     <template v-slot:body>
-      <p class="">{{ disease.description }}</p>
+      <p class="">С вашем питомцем все хорошо, дополнительные обследования не требуются</p>
     </template>
   </modal-window>
 
   <div @click="showModal" class="prediction__element border border-3 border-primary rounded p-2 mb-3">
     <div class="row">
       <div class="element__icon col-2 h1 d-flex justify-content-center align-items-center">
-<!--        <b-icon icon="exclamation-circle-fill" variant="warning"></b-icon>-->
-        <img class="w-100" src="../assets/icons/warning.png" style="">
+        <img class="w-100" src="../assets/icons/success.svg" style="">
       </div>
       <div class="element__icon__body col-10 d-flex flex-column justify-content-center align-items-center">
         <div class="element__icon__body__disease fw-bold h2">
-          {{ disease.name }}
-        </div>
-        <div class="element__icon__body__description col-12">
-          {{ disease.description }}
+          С вашим потомцем все впорядке!
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -68,7 +65,7 @@ export default {
   border-left: solid blue;
 }
 
-.prediction__element{
+.prediction__element {
   cursor: pointer;
 }
 
