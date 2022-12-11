@@ -20,5 +20,8 @@ export default {
         goToQuickStart() {
             this.$router.push({name: 'QuickStartView'})
         },
+        goToDoctors() {
+            this.$router.push({name: 'DoctorsView'})
+        },
     }
 }

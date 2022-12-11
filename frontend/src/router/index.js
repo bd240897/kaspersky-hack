@@ -8,6 +8,7 @@ import CreateProfileView from '../views/CreateProfileView.vue'
 import ProfileView from "@/views/ProfileView";
 import ResultView from "@/views/ResultView";
 import TestView from "@/views/TestView";
+import DoctorsView from "@/views/DoctorsView";
 
 // import Transfer from "@/views/Transfer";
 // import History from "@/views/History";
@@ -49,6 +50,11 @@ const routes = [
         path: '/photo/result',
         name: 'ResultView',
         component: ResultView
+    },
+            {
+        path: '/doctors',
+        name: 'DoctorsView',
+        component: DoctorsView
     },
     {
         path: '/test',

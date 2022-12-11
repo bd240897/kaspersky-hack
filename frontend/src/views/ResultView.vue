@@ -48,7 +48,7 @@
         </div>
 
         <div class="report__btn  my-2">
-          <button class="button_item btn btn-primary w-100" type="submit">Ближайшие клиники</button>
+          <button @click="goToDoctors" class="button_item btn btn-primary w-100" type="submit">Ближайшие клиники</button>
         </div>
       </div>
 
