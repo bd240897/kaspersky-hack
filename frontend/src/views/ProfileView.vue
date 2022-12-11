@@ -1,0 +1,30 @@
+<template>
+
+<h1>Profile</h1>
+</template>
+
+<script>
+import {mapActions, mapState} from "vuex";
+
+export default {
+  name: "ProfileView",
+    data: function () {
+    return {
+    }
+  },
+  computed: {
+    // ...mapState('profile', ['profile_info', "wallets_list"]),
+  },
+  methods: {
+    // ...mapActions('profile', ["getProfileInfo", "getWalletsList",]),
+  },
+  created() {
+  }
+}
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+</style>

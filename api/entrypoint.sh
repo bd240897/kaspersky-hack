@@ -11,5 +11,4 @@ python manage.py loaddata database_example/core.json
 python manage.py loaddata database_example/pet.json
 
 
-
 exec "$@"
