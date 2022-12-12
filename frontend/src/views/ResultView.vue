@@ -16,7 +16,7 @@
 
 
             <DiseaseItem
-                v-if="diseases"
+                v-if="diseases.length"
                 v-for="disease in diseases"
                 :disease="disease"
             />

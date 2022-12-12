@@ -7,7 +7,7 @@ export default createStore({
   state() {
     return {
       // TODO
-      BASE_URL: 'http://51.250.76.141:80', //'http://127.0.0.1:8000',
+      BASE_URL: 'http://51.250.76.141:8000', //'http://127.0.0.1:8000',
       REGISTER_URL: "/api/v1/auth/users/",
       LOGIN_URL: "/auth/token/login",
 
