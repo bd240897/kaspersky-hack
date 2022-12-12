@@ -3,7 +3,7 @@
         <div class="container">
 
             <div class="treatment__header text-size-header  fw-bold text-center my-4">
-                Ближайшие клиники
+                Ближайшие клиники в г. Москва
             </div>
 
             <div class="treatment__text text-size-body mb-2">
@@ -125,6 +125,11 @@
         </div>
 
     </div>
+
+  &#128512;
+  &#128512;
+  &#128512;
+  &#128512;
 </template>
 
 <script>

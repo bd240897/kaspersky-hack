@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="static/temp/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="static/temp/bootstrap-vue.min.css"/>
+    <script src="static/temp/vue.js"></script>
+    <script src="static/temp/bootstrap-vue.min.js"></script>
+    <script src="static/temp/bootstrap-vue-icons.min.js"></script>
+
+</head>
+<body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    html, body {
+        height: 100%;
+    }
+
+    .text-size-header {
+        font-size: 30px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+    }
+
+    .text-size-body {
+        font-size: 21px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+    }
+
+    .bg-green {
+        background-color: #00A88E;
+    }
+
+    .img__container__item {
+        max-width: 350px;
+        height: auto;
+    }
+
+    .profile {
+        background: #26065A;
+    }
+
+    .name__username {
+        font-size: 30px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 700;
+    }
+
+    .name__img__item {
+        max-width: 100px;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .button_item {
+        /* фон */
+        background-color: white;
+        border-radius: 18px;
+        border: 2px solid #5c636a;
+
+        /* тексt */
+        font-size: 16px;
+        font-family: Rubik, sans-serif;
+        font-weight: 600;
+        color: black;
+    }
+
+
+</style>
+
+<div id="app" class="">
+    <section class="make_photo">
+        <div class="container ">
+
+            Личный кабинет
+            Маша
+            Список моих питомцев
+            Добавить
+
+
+            <div class="make__header text-center text-size-header mb-4">
+                Личный кабинет
+            </div>
+
+            <div class="profile__container container d-flex flex-column h-100">
+                <div class="user mb-3">
+                    <div class="user__name row align-items-center pt-3">
+                        <div class="name__img col-3">
+                            <img class="name__img__item" src="static/img/mama.jpg">
+                        </div>
+
+                        <div class="name__username col-9 text-center">
+                            <p class="ms-3">Иван</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="make__body text-size-body  mb-4">
+                Список моих питомцев
+
+            </div>
+
+
+            <div class="make__form w-100 mb-2 border border-primary p-2 rounded">
+                <div class="pet_item">
+                    <div class="row align-items-center">
+                        <div class="pet__avatar col-4 ">
+                            <img class="name__img__item" src="static/img/mama.jpg">
+                        </div>
+                        <div class="pet__name col-4 text-size-body">
+                            Олег
+                        </div>
+                        <div class="pet_edit col-4 text-size-body">
+                            &#9881;edit
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+
+
+    window.app = new Vue({
+        el: '#app',
+        data: {
+            name: ''
+        },
+        computed: {
+            showAlert() {
+                return this.name.length > 4 ? true : false
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
