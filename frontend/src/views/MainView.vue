@@ -6,11 +6,11 @@
 
       <div class="about_us mb-2 border border-primary rounded-2 p-2">
         <div class="about_us__header text-size-header text-center mb-2">
-          О нас
+          About us
         </div>
 
         <div class="about_us__text text-size-body mb-2">
-          Наш проект поможет вашему питомцу всегда быть здоровым и энергичным.
+          Our project will help your pet to always be healthy and energetic.
         </div>
       </div>
 
@@ -18,7 +18,7 @@
           class="video d-flex flex-column justify-content-center align-items-center mb-2 border border-primary rounded-2 p-2">
 
         <div class="video__header text-size-header text-center mb-2">
-          Презентация
+          Our video
         </div>
 
         <div class="video__iframe mb-2 embed-responsive embed-responsive-4by3">
@@ -30,33 +30,36 @@
         </div>
 
         <div class="video__btn d-grid gap-2 w-100 mb-2">
-          <b-button v-on:click.prevent="goToRegister" class="video__btn__item" block variant="primary">Присоединиться
+          <b-button v-on:click.prevent="goToRegister" class="video__btn__item" block variant="primary">
+            Join our community
           </b-button>
         </div>
 
         <div class="video__btn d-grid gap-2 w-100 mb-2">
-          <b-button v-on:click.prevent="goToLogin" class="video__btn__item" block variant="primary">Войти</b-button>
+          <b-button v-on:click.prevent="goToLogin" class="video__btn__item" block variant="primary">
+            Sign in
+          </b-button>
         </div>
       </div>
 
       <div class="purpose mb-2 border border-primary rounded-2 p-2">
         <div class="purpose__header text-size-header text-center mb-2">
-          Наши цели
+          Our goals
         </div>
 
         <div class="purpose__text text-size-body mb-2">
           <b-list-group>
             <b-list-group-item>
               <b-icon icon="star-fill" variant="success"></b-icon>
-              контроль здоровья вашего питомца
+              monitoring your pet's health
             </b-list-group-item>
             <b-list-group-item>
               <b-icon icon="star-fill" variant="success"></b-icon>
-              своевременное выявление заболеваний
+              timely detection of diseases
             </b-list-group-item>
             <b-list-group-item>
               <b-icon icon="star-fill" variant="success"></b-icon>
-              консультации со специалистами
+              consultations with specialists
             </b-list-group-item>
           </b-list-group>
         </div>
@@ -64,22 +67,22 @@
 
       <div class="advantage mb-2 border border-primary rounded-2 p-2">
         <div class="advantage__header text-size-header text-center mb-2">
-          Наши достоиснва
+          Our advantages
         </div>
 
         <div class="advantage__text text-size-body mb-2">
           <b-list-group>
             <b-list-group-item>
               <b-icon icon="star-fill" variant="success"></b-icon>
-              не нужно никуда идти
+              no need to go anywhere
             </b-list-group-item>
             <b-list-group-item>
               <b-icon icon="star-fill" variant="success"></b-icon>
-              мгновенный результат
+              instant result
             </b-list-group-item>
             <b-list-group-item>
               <b-icon icon="star-fill" variant="success"></b-icon>
-              консультация со специалистом
+              consultation with a specialist
             </b-list-group-item>
           </b-list-group>
         </div>
@@ -87,16 +90,16 @@
 
       <div class="start mb-2 border border-primary rounded-2 p-2">
         <div class="start__header text-size-header text-center mb-2">
-          Быстрый старт
+          Quick start
         </div>
 
         <div class="start__text text-size-body mb-3">
-          Если вы не хотите регистрироваться а просто хотите протестировать наш фунционал вам сюда:
+          If you do not want to register, but just want to test our functionality, check out link below:
         </div>
 
         <div class="start__btn d-grid gap-2 w-100 mb-2">
-          <b-button v-on:click.prevent="goToQuickStart" class="start__btn__item" block variant="primary">Сделать фото и
-            получить ответ
+          <b-button v-on:click.prevent="goToQuickStart" class="start__btn__item" block variant="primary">
+            Take a photo and get a diagnosis
           </b-button>
         </div>
       </div>

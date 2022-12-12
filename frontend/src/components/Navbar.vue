@@ -1,7 +1,7 @@
 <template>
   <div class="page_nav mb-2">
     <b-navbar toggleable type="dark" variant="primary">
-      <b-navbar-brand class="ms-2 text-white fw-bold" href="#">Tail app</b-navbar-brand>
+      <b-navbar-brand v-on:click="goToMain" class="ms-2 text-white fw-bold" href="#">Tail app</b-navbar-brand>
 
       <b-navbar-toggle class="me-2" target="navbar-toggle-collapse">
 
@@ -14,8 +14,9 @@
 
       <b-collapse id="navbar-toggle-collapse" is-nav>
         <b-navbar-nav class="ms-auto text-white">
-          <b-nav-item to="/" class="ms-2 text-white" active-class="white" href="#" >Main</b-nav-item>
+          <b-nav-item to="/" class="ms-2 text-white" active-class="white" href="#">Main</b-nav-item>
           <b-nav-item to="/quick/" class="ms-2" href="#">Quick start</b-nav-item>
+          <b-nav-item to="/doctors/" class="ms-2" href="#">Clinics</b-nav-item>
           <b-nav-item to="/team/" class="ms-2" href="#">About team</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -24,13 +25,16 @@
 </template>
 
 <script>
+import goToSomewhere from "@/mixins/goToSomewhere";
+
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  mixins: [goToSomewhere],
 }
 </script>
 
 <style scoped>
 .nav-item a {
-  color: white!important;
+  color: white !important;
 }
 </style>

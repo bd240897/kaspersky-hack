@@ -11,17 +11,16 @@
       </div>
 
       <div class="make__header text-center text-size-header mb-4">
-        Инструкция как фотографировать
+        How to take pictures
       </div>
 
       <div class="make__body text-size-body  mb-4">
-        Сделайте фотографию эксорементов вашего питмоца так же как на рисунке с примером. Затем загрузитет
-        фотографию в форму ниже и нажимите кнопку отправить.
+Take a photo of your pet's exhibits. The photo must be of good quality, and also not have unnecessary items. Then upload a photo to the form below and click the submit button.
       </div>
 
       <div class="make__img mb-4">
         <div class="img__header text-size-body text-center fw-bold">
-          Превью фото
+          Preview of photo
         </div>
         <div class="img__container d-flex justify-content-center" >
           <img v-if="!file" class="img__container__item w-100" src="http://dummyimage.com/400"/>
@@ -31,14 +30,18 @@
 
       <div class="make__form w-100 mb-2 border border-primary p-2 rounded">
         <div class="form__photo mb-2">
-          <label for="file" class="form-label">Загрузить фото</label>
+          <label for="file" class="form-label">
+            Upload photo
+          </label>
           <input v-on:change="handleFileUpload()" class="create_body__file form-control" type="file" id="file"
                  ref="file" multiple>
 
         </div>
 
         <div class="form__button my-2">
-          <button v-on:click="submitFile()" class="button_item btn btn-primary w-100" type="submit">Отправить</button>
+          <button v-on:click="submitFile()" class="button_item btn btn-primary w-100" type="submit">
+            Upload
+          </button>
         </div>
 
 

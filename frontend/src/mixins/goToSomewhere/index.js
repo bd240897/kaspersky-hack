@@ -12,6 +12,9 @@ export default {
         goToRegister() {
             this.$router.push({name: 'RegisterView'})
         },
+        goToMain() {
+            this.$router.push({name: 'MainView'})
+        },
         goToProfile(id) {
             console.log(id)
             // перейти на страницу экспертов
