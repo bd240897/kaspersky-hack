@@ -1,4 +1,6 @@
 <template>
+  <Navbar/>
+
   <section class="results h-100">
     <div class="container">
 
@@ -87,6 +89,7 @@ import goToSomewhere from "@/mixins/goToSomewhere";
 import {mapActions, mapState} from "vuex";
 import DiseaseItem from "@/components/DiseaseItem";
 import DiseaseItemHealthy from "@/components/DiseaseItemHealthy";
+import Navbar from "@/components/Navbar";
 
 export default {
   name: "ResultView",
@@ -94,6 +97,7 @@ export default {
   components: {
     DiseaseItem,
     DiseaseItemHealthy,
+    Navbar
   },
   data() {
     return {}

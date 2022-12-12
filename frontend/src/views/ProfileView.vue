@@ -1,16 +1,20 @@
 <template>
+  <Navbar/>
 
-<h1>Profile</h1>
+  <h1>Profile</h1>
 </template>
 
 <script>
 import {mapActions, mapState} from "vuex";
+import Navbar from "@/components/Navbar";
 
 export default {
   name: "ProfileView",
-    data: function () {
-    return {
-    }
+  components: {
+    Navbar
+  },
+  data: function () {
+    return {}
   },
   computed: {
     // ...mapState('profile', ['profile_info', "wallets_list"]),

@@ -1,4 +1,6 @@
 <template>
+    <Navbar/>
+
   <section class="make_photo">
     <div class="container ">
 
@@ -49,9 +51,13 @@
 <script>
 import goToSomewhere from "@/mixins/goToSomewhere";
 import {mapActions} from "vuex";
+import Navbar from "@/components/Navbar";
 
 export default {
   name: "QuickStartView",
+    components: {
+    Navbar
+  },
   mixins: [goToSomewhere],
   data() {
     return {

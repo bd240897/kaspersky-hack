@@ -1,4 +1,6 @@
 <template>
+    <Navbar/>
+
     <section class="create_profile h-100">
         <div class="container d-flex flex-column align-items-center justify-content-center h-100">
 
@@ -49,8 +51,13 @@
 </template>
 
 <script>
+import Navbar from "@/components/Navbar";
+
 export default {
-  name: "CreateProfileView"
+  name: "CreateProfileView",
+    components: {
+    Navbar
+  },
 }
 </script>
 

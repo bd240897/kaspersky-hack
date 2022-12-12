@@ -1,4 +1,6 @@
 <template>
+    <Navbar/>
+
     <div class="treatment">
         <div class="container">
 
@@ -133,8 +135,13 @@
 </template>
 
 <script>
+import Navbar from "@/components/Navbar";
+
 export default {
-  name: "DoctorsView"
+  name: "DoctorsView",
+    components: {
+    Navbar
+  },
 }
 </script>
 
