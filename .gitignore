@@ -8,3 +8,4 @@ __pycache__/
 /api/db.sqlite3
 /docs/
 /temp/
+/api/pet/migrations/

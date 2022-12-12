@@ -62,7 +62,6 @@ const routes = [
         name: 'TeamView',
         component: TeamView
     },
-
     {
         path: '/test',
         name: 'TestView',
