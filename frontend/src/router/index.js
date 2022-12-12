@@ -9,6 +9,7 @@ import ProfileView from "@/views/ProfileView";
 import ResultView from "@/views/ResultView";
 import TestView from "@/views/TestView";
 import DoctorsView from "@/views/DoctorsView";
+import TeamView from "@/views/TeamView";
 
 // import Transfer from "@/views/Transfer";
 // import History from "@/views/History";
@@ -31,7 +32,7 @@ const routes = [
         name: 'RegisterView',
         component: RegisterView
     },
-        {
+    {
         path: '/profile/create',
         name: 'CreateProfileView',
         component: CreateProfileView
@@ -46,21 +47,28 @@ const routes = [
         name: 'QuickStartView',
         component: QuickStartView
     },
-        {
+    {
         path: '/photo/result',
         name: 'ResultView',
         component: ResultView
     },
-            {
+    {
         path: '/doctors',
         name: 'DoctorsView',
         component: DoctorsView
     },
     {
+        path: '/team',
+        name: 'TeamView',
+        component: TeamView
+    },
+
+    {
         path: '/test',
         name: 'TestView',
         component: TestView
     },
+
 
     //
     // {

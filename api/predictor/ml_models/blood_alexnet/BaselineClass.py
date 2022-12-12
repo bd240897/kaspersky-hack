@@ -49,7 +49,7 @@ class BaseLine():
 
     def get_map_labels(self):
         # декодированием меток
-        self.map_labels = ['true', 'false']
+        self.map_labels = ['false', 'true'] # ['healthy', 'parasites']
 
     def get_transformer(self):
         # трансформация входных данных
@@ -68,7 +68,7 @@ class BaseLine():
 
     def load_model_weights(self):
         # загрузка весов модели
-        self.model.load_state_dict(torch.load(PATH_MODEL_WEIGHTS))
+        self.model.load_state_dict(torch.load(PATH_MODEL_WEIGHTS, map_location='cpu'))
 
     def _check_img_extension(self, url):
         """Проверка расширения по урлу"""

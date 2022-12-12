@@ -1,11 +1,10 @@
 <template>
-
   <modal-window ref="modal">
     <template v-slot:title>
       <h3 class="">{{ disease.name }}</h3>
     </template>
     <template v-slot:body>
-      <p class="">{{ disease.description }}</p>
+      <p class="" v-html="disease.more_information"></p>
     </template>
   </modal-window>
 

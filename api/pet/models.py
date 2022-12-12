@@ -46,10 +46,14 @@ class Diseases(models.Model):
     label = models.CharField(verbose_name="Короткое название", max_length=100)
     name = models.CharField(verbose_name="Название", max_length=100, blank=True, null=True)
     description = models.CharField(verbose_name="Описание", max_length=100, blank=True, null=True)
+    more_information = models.TextField(verbose_name="Подробное описание", max_length=10000, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Болезнь'
         verbose_name_plural = 'Болезни'
+
+    def __str__(self):
+        return str(self.label)
 
 class RequestPhoto(models.Model):
     """Запрос с фото"""

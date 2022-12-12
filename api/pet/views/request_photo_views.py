@@ -233,6 +233,7 @@ class RequestPhotoPredictionView(generics.GenericAPIView):
 
         # парсим запрос и добавляем болезни в таблицу
         predictor_serializer_data = PredictorSerialiser(response.get("predictor")).data
+        print(predictor_serializer_data)
         for key, value in predictor_serializer_data.items():
             if value:
                 disease = Diseases.objects.get(label=key)
