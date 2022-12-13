@@ -4,8 +4,8 @@
 Команда: **Win+ners**
 
 ## Демо:
-TODO
-[comment]: <> ([![Watch the video]&#40;https://img.youtube.com/vi/-mV5gwUZbdw/hqdefault.jpg&#41;]&#40;https://youtu.be/-mV5gwUZbdw&#41;)
+=
+[![Watch the video](./materials/prototype_preview.png)](https://youtu.be/aSgtn1f2SU4;
 
 ## Оглавление
 0. [Команда](#Команда)
@@ -23,13 +23,12 @@ TODO
 2. [Максим Кишик](https://t.me/kishikmaxim) - backend
 3. [Илья Радомский](https://t.me/Tealdris) - devops
 4. [Аня Мархаева](https://t.me/privetobnako) - designer
-5. [Мария Шемонаева](https://t.me/MShemonaeva)  - analyst
 
 [:arrow_up:Оглавление](#Оглавление)
 
 ## Задача
 ### Описание задачи
-TODO
+Реализовать детектор заболеваний по фотографии poops для собак.
 
 [:arrow_up:Оглавление](#Оглавление)
 
@@ -37,7 +36,7 @@ TODO
     python 3.8
     backend - django rest framework
     forntend - vue.js
-    database - sqlite3
+    database - sqlite3/ or PostgeSQL
 
 [:arrow_up:Оглавление](#Оглавление)
 
@@ -46,31 +45,12 @@ TODO
 Backend, реализованный на `Django`, нахоодится в папке `api`.
 Ниже представлены возможности нашего API
 
-Два главных запроса `create user` и `login`. В них, по логину и паролю формируется токен, который позже используется во всех остальных запросах.
-
 ### документация к API
 
-##### `create user`
+##### `send photo`
     method: POST
-    link: http://127.0.0.1:8000/api/v1/auth/users/
-    data-parametrs: username password
-
-##### `login`
-    method: POST
-    link: http://127.0.0.1:8000/auth/token/login/
-    data-parametrs: username password
-
-##### `user list`
-    method: GET
-    link: http://127.0.0.1:8000/api/v1/auth/users/
-
-##### `logout`
-    method: POST
-    link: http://127.0.0.1:8000/auth/token/logout/
-
-##### `user infos`
-    method: GET
-    link: http://127.0.0.1:8000/api/v1/auth/users/me/
+    link: http://127.0.0.1:8000/api/v2/request/photo/quick/
+    data-parametrs: file: poop.jpg
 
 [:arrow_up:Оглавление](#Оглавление)
 
@@ -109,38 +89,39 @@ https://webdevblog.ru/kak-ispolzovat-django-postgresql-i-docker/
 
     git clone https://github.com/bd240897/kaspersky-hack
     cd kaspersky-hack/
-    docker-compose -f docker-compose.yml up --build
-
+    docker-compose -f docker-compose.back.yml up --build -d 
+    docker-compose -f docker-compose.front-nginx.yml up --build -d 
+    
 [:arrow_up:Оглавление](#Оглавление)
 
 ## Описание структуры папок проекта
 
 Размеченные шаблоны страниц для нашего приложения находятся в папке `templates`.
-В задании был использован `bootstrap` framefork
+В задании был использован `bootstrap` framework
 
-- **api** - Файлы для бэкенда
+- **api** - Файлы для бэкенда (django)
   - api - папка с настройками проекта
   - ...
-  - core - приложение с логикой банка
-    - currency - функции для получения курсов валют
+  - pet - приложение с логикой
     - ...
-  - example_data - тестовы данные для БД
-- **frontend** - Файлы для фронтенда
+  - example_data - тестовые данные для БД
+- **frontend** - Файлы для фронтенда (vue)
   - public - Общедоступные файлы
   - src - исходники
 - **html_templates** - сверстанные шаблоны
-- **materials** - Видео работы и дополнительные материала
+- **materials** - дополнительные материалы
+- **cnn_learning** - скрипты обучения нейронки
 
 [:arrow_up:Оглавление](#Оглавление)
 
 ## Запуск
 Протестировать уже запущенный сайт можно по ссылке:</br>
 
-    http://win-plus-ners.ru/ (доступен на момент предоставления решения)
+    http://84.201.135.220// (доступен на момент предоставления решения)
     # или
     http://localhost:8080/ (доступен при создании локального проекта)
 
-Админы:
+Админы у админки джанги:
 - Логин: "amid", Пароль: "1"
 
 Пользователи:
