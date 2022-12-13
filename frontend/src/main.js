@@ -4,10 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap/dist/js/bootstrap.js'
-
-// set base url
+// set base url for backend
 axios.defaults.baseURL = store.state.BASE_URL //'http://127.0.0.1:8000'
 
 // если ошибка авторизации кидает на регистарция
@@ -23,11 +20,11 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error)
 })
 
-
 import BootstrapVue3 from 'bootstrap-vue-3'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
-
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap/dist/js/bootstrap.js'
 
 const app = createApp(App).use(store).use(router).use(BootstrapVue3).mount('#app') //
 

@@ -18,9 +18,8 @@
           Preview of photo
         </div>
         <div class="img__container d-flex justify-content-center">
-<!--          src="http://dummyimage.com/400"-->
           <img v-if="!file" class="img__container__item w-100" src="../assets/img/poop_example.png"/>
-          <img v-else v-bind:src="imagePreview" v-show="showPreview" style="max-width: 400px; height: auto"/>
+          <img v-else v-bind:src="imagePreview" v-show="showPreview" class="img__container__item w-100"/>
         </div>
       </div>
 

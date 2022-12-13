@@ -1,7 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
-
 import MainView from '../views/MainView.vue'
 import QuickStartView from '../views/QuickStartView.vue'
 import CreateProfileView from '../views/CreateProfileView.vue'
@@ -11,10 +10,6 @@ import TestView from "@/views/TestView";
 import DoctorsView from "@/views/DoctorsView";
 import TeamView from "@/views/TeamView";
 
-// import Transfer from "@/views/Transfer";
-// import History from "@/views/History";
-// import ChatView from "@/views/ChatView";
-// import ListExpertsView from "@/views/ListExpertsView";
 
 const routes = [
     {
@@ -67,19 +62,6 @@ const routes = [
         name: 'TestView',
         component: TestView
     },
-
-
-    //
-    // {
-    //     path: '/transfer/:id',
-    //     name: 'Transfer',
-    //     component: Transfer
-    // },
-    // {
-    //     path: '/history',
-    //     name: 'History',
-    //     component: History
-    // },
 ]
 
 const router = createRouter({

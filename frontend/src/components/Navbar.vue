@@ -18,7 +18,7 @@
           <b-nav-item to="/" class="ms-2 text-white" active-class="white" href="#">Main</b-nav-item>
           <b-nav-item to="/quick/" class="ms-2" href="#">Quick start</b-nav-item>
           <b-nav-item to="/doctors/" class="ms-2" href="#">Clinics</b-nav-item>
-          <b-nav-item to="/team/" class="ms-2" href="#">About team</b-nav-item>
+<!--          <b-nav-item to="/team/" class="ms-2" href="#">About team</b-nav-item>-->
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
