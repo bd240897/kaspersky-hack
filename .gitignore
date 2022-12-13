@@ -9,3 +9,5 @@ __pycache__/
 /docs/
 /temp/
 /api/pet/migrations/
+/nginx/
+/frontend/dist/
