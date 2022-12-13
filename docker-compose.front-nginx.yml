@@ -1,0 +1,10 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: nginx.Dockerfile
+#    command: npm run serve
+#    command: http-server dist --port 80
+    ports:
+      - "80:80"

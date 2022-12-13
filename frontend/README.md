@@ -1,19 +1,16 @@
-# learn-vue-v2
 
-## Project setup
-```
-npm install
-```
+**Dockerfile**
+    
+Простой докер-файл, для запуска через http-server. Есть проблема с router, history: createWebHistory().
+При принудительной перезагрузке страницы приложение падает.
+Ибо ему нужно раздавать index.html.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Решение 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+https://dev.to/nas5w/how-to-serve-a-vue-app-with-nginx-in-docker-4p54
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+https://cli.vuejs.org/ru/guide/deployment.html#docker-nginx
+
+**nginx.Dockerfile**
+Докер-файл, для запуска vue через nginx. (взято из документации)
+Приложение больше не падает.

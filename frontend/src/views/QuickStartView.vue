@@ -9,7 +9,7 @@
       </div>
 
       <div class="make__body text-size-body  mb-4">
-        Take a photo of your pet's exhibits. The photo must be of good quality, and also not have unnecessary items.
+        Take a photo of your pet's poops. The photo must be of good quality, and also not have unnecessary items.
         Then upload a photo to the form below and click the submit button.
       </div>
 
@@ -96,6 +96,10 @@ export default {
     submitFile() {
       let formData = new FormData();
       formData.append('file', this.file);
+
+
+      // обнулим ошибки
+      this.error_massage = '';
 
       this.SEND_PHOTO({formData: formData})
           .catch(err => {
