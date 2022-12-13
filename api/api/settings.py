@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     "corsheaders",
     
     'rest_framework',
-    'core',
     'pet',
     'filter',
 

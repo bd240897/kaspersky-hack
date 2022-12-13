@@ -10,8 +10,6 @@ class Profile(models.Model):
     """Профиль юзера"""
 
     name = models.CharField(verbose_name="Имя", max_length=100)
-    # second_name = models.CharField(verbose_name="Фамилия", max_length=100, blank=True, null=True)
-    # third_name = models.CharField(verbose_name="Отчество", max_length=100, blank=True, null=True)
     avatar = models.ImageField(verbose_name="Аватарка", upload_to='core/profile', default='core/profile/avatar_default.png')
     user = models.OneToOneField(User, verbose_name="Юзер", on_delete=models.CASCADE, related_name='pet_profile_user', db_index=True)
     active = models.BooleanField(verbose_name="Статус", default=True)
@@ -22,7 +20,7 @@ class Profile(models.Model):
         verbose_name_plural = 'Профили владельца'
 
     def __str__(self):
-        return str(', '.join((self.first_name, self.second_name, self.third_name)))
+        return str(self.name)
 
 
 class Pet(models.Model):
@@ -81,6 +79,9 @@ class RequestPhoto(models.Model):
         if status in allowed_status:
             self.status = status
             self.save()
+
+    def __str__(self):
+        return str(self.id)
 
 class QuickRequestPhoto(models.Model):
     """Быстрый Запрос с фото"""
