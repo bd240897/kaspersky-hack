@@ -51,8 +51,9 @@
   "pk": 1,
   "fields": {
     "label": "blood",
-    "name": "Кровь",
-    "description": "Просто описание"
+    "name": "blood",
+    "description": "Please may consider to contact vet specialist",
+    "more_information": "<p class=\"p-0 m-0 my-1\">Please may consider to contact vet specialist</p>\r\n<h5 class=\"p-0 m-0 my-1\">You have to look a bit careful to the stool, blood in the fecal might appear due to the several reasons</h5>\r\n<ul class=\"list-group\">\r\n  <li class=\"list-group-item\">Your dog has eaten blood, raw meat, or leaving creature (mouse, etc)</li>\r\n  <li class=\"list-group-item\">Your dog might have  parasites</li>\r\n  <li class=\"list-group-item\">Your dog might be infected with bacteria</li>\r\n</ul>"
   }
 },
 {
@@ -60,8 +61,9 @@
   "pk": 2,
   "fields": {
     "label": "parasite",
-    "name": "Паразиты",
-    "description": "Просто описание 2"
+    "name": "Parasites",
+    "description": "Please may consider to contact vet specialist",
+    "more_information": "<p class=\"p-0 m-0 my-1\">Your dog have parasites of some type (Roundworms Tapeworms Hookworms Heartworms)</p>\r\n<p class=\"p-0 m-0 my-1\">Please may consider to contact vet specialist</p>\r\n<h5 class=\"p-0 m-0 my-1\">Other symptoms of the parasites</h5>\r\n<ul class=\"list-group\">\r\n  <li class=\"list-group-item\">weight loss</li>\r\n  <li class=\"list-group-item\">lack of appetite</li>\r\n  <li class=\"list-group-item\">pot-belly appearance</li>\r\n  <li class=\"list-group-item\">loose stool or diarrhea</li>\r\n  <li class=\"list-group-item\">And a fifth one</li>\r\n</ul>"
   }
 },
 {
@@ -134,6 +136,32 @@
   }
 },
 {
+  "model": "pet.requestphoto",
+  "pk": 8,
+  "fields": {
+    "pet": 1,
+    "photo": "prediction_photo/profile/7_poop.JPG",
+    "date_creation": "2022-12-11T14:49:43.974Z",
+    "status": "predictor",
+    "diseases": [
+      2
+    ]
+  }
+},
+{
+  "model": "pet.requestphoto",
+  "pk": 9,
+  "fields": {
+    "pet": 1,
+    "photo": "prediction_photo/profile/21_mNqi7Ek.jpg",
+    "date_creation": "2022-12-12T22:03:07.114Z",
+    "status": "predictor",
+    "diseases": [
+      2
+    ]
+  }
+},
+{
   "model": "pet.quickrequestphoto",
   "pk": 1,
   "fields": {
@@ -170,6 +198,226 @@
     "photo": "prediction_photo/profile/1_fnvUG8h.JPG",
     "date_creation": "2022-11-28T20:34:52.299Z",
     "status": "predictor",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 24,
+  "fields": {
+    "photo": "prediction_photo/profile/1_9eRausF.JPG",
+    "date_creation": "2022-12-11T14:37:12.221Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 25,
+  "fields": {
+    "photo": "prediction_photo/profile/1_nDwFzZV.JPG",
+    "date_creation": "2022-12-11T14:38:09.874Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 28,
+  "fields": {
+    "photo": "prediction_photo/profile/1_3r7xeue.JPG",
+    "date_creation": "2022-12-11T14:42:11.571Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 29,
+  "fields": {
+    "photo": "prediction_photo/profile/1_BH3lZxM.JPG",
+    "date_creation": "2022-12-11T14:42:52.736Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 30,
+  "fields": {
+    "photo": "prediction_photo/profile/1_WtzOIpA.JPG",
+    "date_creation": "2022-12-11T14:45:28.216Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 31,
+  "fields": {
+    "photo": "prediction_photo/profile/1_iJOqx7i.JPG",
+    "date_creation": "2022-12-11T14:45:47.644Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 42,
+  "fields": {
+    "photo": "prediction_photo/profile/1_FVltSfH.JPG",
+    "date_creation": "2022-12-11T16:30:29.142Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 45,
+  "fields": {
+    "photo": "prediction_photo/profile/9_poop.jpg",
+    "date_creation": "2022-12-12T12:37:03.056Z",
+    "status": "predictor",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 46,
+  "fields": {
+    "photo": "prediction_photo/profile/9_poop_pGP9YnQ.jpg",
+    "date_creation": "2022-12-12T12:37:13.537Z",
+    "status": "predictor",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 47,
+  "fields": {
+    "photo": "prediction_photo/profile/9_poop_ADlfVF9.jpg",
+    "date_creation": "2022-12-12T12:37:49.371Z",
+    "status": "predictor",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 48,
+  "fields": {
+    "photo": "prediction_photo/profile/7_poop_VBLgvYx.JPG",
+    "date_creation": "2022-12-12T12:38:46.362Z",
+    "status": "predictor",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 53,
+  "fields": {
+    "photo": "prediction_photo/profile/1_R8fuAgn.JPG",
+    "date_creation": "2022-12-12T14:48:41.396Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 54,
+  "fields": {
+    "photo": "prediction_photo/profile/1_p4N37x0.JPG",
+    "date_creation": "2022-12-12T14:49:12.827Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 55,
+  "fields": {
+    "photo": "prediction_photo/profile/1_IQIEvst.JPG",
+    "date_creation": "2022-12-12T14:49:20.096Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 56,
+  "fields": {
+    "photo": "prediction_photo/profile/1_XkTgwdG.JPG",
+    "date_creation": "2022-12-12T14:49:24.683Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 57,
+  "fields": {
+    "photo": "prediction_photo/profile/1_y0KzP9z.JPG",
+    "date_creation": "2022-12-12T14:49:28.488Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 59,
+  "fields": {
+    "photo": "prediction_photo/profile/1_56qwTVC.JPG",
+    "date_creation": "2022-12-12T14:53:31.057Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 60,
+  "fields": {
+    "photo": "prediction_photo/profile/1_eM7KP44.JPG",
+    "date_creation": "2022-12-12T14:53:38.376Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 64,
+  "fields": {
+    "photo": "prediction_photo/profile/1_Y7EOFHb.JPG",
+    "date_creation": "2022-12-12T18:13:25.370Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 73,
+  "fields": {
+    "photo": "prediction_photo/profile/21.jpg",
+    "date_creation": "2022-12-12T22:01:58.669Z",
+    "status": "predictor",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 81,
+  "fields": {
+    "photo": "prediction_photo/profile/1_WULm9nU.JPG",
+    "date_creation": "2022-12-13T15:12:13.648Z",
+    "status": "filter",
+    "diseases": []
+  }
+},
+{
+  "model": "pet.quickrequestphoto",
+  "pk": 82,
+  "fields": {
+    "photo": "prediction_photo/profile/1_WbL5tiz.JPG",
+    "date_creation": "2022-12-13T15:13:10.854Z",
+    "status": "filter",
     "diseases": []
   }
 }

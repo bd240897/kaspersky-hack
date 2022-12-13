@@ -51,7 +51,8 @@
 
         <div v-else class="recommendation__list">
           <div class="recommendation__item text-size-body">
-            - You don't need to do anything. Everything is fine with your pet.
+            <p class="m-0 p-0 pb-1">You don't need to do anything. Everything is fine with your pet. </p>
+            <p class="m-0 p-0 pb-1">But you can see the list of our clinics.</p>
           </div>
         </div>
 

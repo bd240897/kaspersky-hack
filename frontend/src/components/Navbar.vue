@@ -7,7 +7,7 @@
 
 
         <template #default="{ expanded }">
-          &#128559;
+          &#128523;
 <!--          <b-icon v-if="expanded" icon="chevron-bar-up">&#128559;</b-icon>-->
 <!--          <b-icon v-else icon="chevron-bar-down">&#128523;</b-icon>-->
         </template>
