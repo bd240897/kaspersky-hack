@@ -29,17 +29,17 @@
                   allowfullscreen></iframe>
         </div>
 
-        <div class="video__btn d-grid gap-2 w-100 mb-2">
-          <b-button v-on:click.prevent="goToRegister" class="video__btn__item" block variant="primary">
-            Join our community
-          </b-button>
-        </div>
+<!--        <div class="video__btn d-grid gap-2 w-100 mb-2">-->
+<!--          <b-button v-on:click.prevent="goToRegister" class="video__btn__item" block variant="primary">-->
+<!--            Join our community-->
+<!--          </b-button>-->
+<!--        </div>-->
 
-        <div class="video__btn d-grid gap-2 w-100 mb-2">
-          <b-button v-on:click.prevent="goToLogin" class="video__btn__item" block variant="primary">
-            Sign in
-          </b-button>
-        </div>
+<!--        <div class="video__btn d-grid gap-2 w-100 mb-2">-->
+<!--          <b-button v-on:click.prevent="goToLogin" class="video__btn__item" block variant="primary">-->
+<!--            Sign in-->
+<!--          </b-button>-->
+<!--        </div>-->
       </div>
 
       <div class="purpose mb-2 border border-primary rounded-2 p-2">
@@ -50,15 +50,15 @@
         <div class="purpose__text text-size-body mb-2">
           <b-list-group>
             <b-list-group-item>
-              <b-icon icon="star-fill" variant="success"></b-icon>
+<!--              <b-icon icon="star-fill" variant="success"></b-icon>-->
               monitoring your pet's health
             </b-list-group-item>
             <b-list-group-item>
-              <b-icon icon="star-fill" variant="success"></b-icon>
+<!--              <b-icon icon="star-fill" variant="success"></b-icon>-->
               timely detection of diseases
             </b-list-group-item>
             <b-list-group-item>
-              <b-icon icon="star-fill" variant="success"></b-icon>
+<!--              <b-icon icon="star-fill" variant="success"></b-icon>-->
               consultations with specialists
             </b-list-group-item>
           </b-list-group>
@@ -73,15 +73,15 @@
         <div class="advantage__text text-size-body mb-2">
           <b-list-group>
             <b-list-group-item>
-              <b-icon icon="star-fill" variant="success"></b-icon>
+<!--              <b-icon icon="star-fill" variant="success"></b-icon>-->
               no need to go anywhere
             </b-list-group-item>
             <b-list-group-item>
-              <b-icon icon="star-fill" variant="success"></b-icon>
+<!--              <b-icon icon="star-fill" variant="success"></b-icon>-->
               instant result
             </b-list-group-item>
             <b-list-group-item>
-              <b-icon icon="star-fill" variant="success"></b-icon>
+<!--              <b-icon icon="star-fill" variant="success"></b-icon>-->
               consultation with a specialist
             </b-list-group-item>
           </b-list-group>
@@ -94,7 +94,7 @@
         </div>
 
         <div class="start__text text-size-body mb-3">
-          If you do not want to register, but just want to test our functionality, check out link below:
+          Our system will analyze your photo, just send it to us.
         </div>
 
         <div class="start__btn d-grid gap-2 w-100 mb-2">

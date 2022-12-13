@@ -5,7 +5,7 @@
     <div class="container">
 
       <div class="treatment__header text-size-header  fw-bold text-center my-4">
-        Nearest clinics in Moscow
+        Our partner Clinics
       </div>
 
       <div class="treatment__text text-size-body mb-2">
@@ -17,7 +17,7 @@
 
           <div class="doctor__item__btn text-center text-size-header fw-bold px-3 py-4 rounded rounded-4"
                v-b-toggle.collapse-1>
-            <spna>Clinic</spna>
+            <span>Clinic</span>
             Animal Planets
           </div>
 
@@ -55,7 +55,7 @@
 
           <div class="doctor__item__btn text-center text-size-header fw-bold px-3 py-4 rounded rounded-4"
                v-b-toggle.collapse-2>
-            <spna>Clinic</spna>
+            <span>Clinic</span>
             Amulet
           </div>
 
@@ -93,7 +93,7 @@
 
           <div class="doctor__item__btn text-center text-size-header fw-bold px-3 py-4 rounded rounded-4"
                v-b-toggle.collapse-3>
-            <spna> Clinic</spna>
+            <span> Clinic</span>
             Achilles
           </div>
 
@@ -140,6 +140,9 @@ export default {
   components: {
     Navbar
   },
+  methods: {
+
+  }
 }
 </script>
 

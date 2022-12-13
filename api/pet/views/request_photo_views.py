@@ -300,7 +300,7 @@ class QuickPhotoPredictionView(generics.GenericAPIView):
         # если на фото не нужная картинка отправим ответ вида
         answer_response_filter = response_filter.get("filter").get("type")  # {"filter": {"type": "other" },}
         if answer_response_filter == "other":
-            massage = {"detail" : "На фото poops не обнаружено или их плох видно!"}
+            massage = {"detail" : "There are no poops found in the photo or they are poorly visible!"}
             return Response(massage, status=status.HTTP_400_BAD_REQUEST)
 
         # отправляем на сервис-2

@@ -1,32 +1,34 @@
 <template>
-    <Navbar/>
+  <Navbar/>
 
   <section class="make_photo">
     <div class="container ">
-
-      <div class="login__error w-100">
-        <b-alert v-if="error_massage" show dismissible>
-          <div>{{ error_massage }}</div>
-        </b-alert>
-      </div>
 
       <div class="make__header text-center text-size-header mb-4">
         How to take pictures
       </div>
 
       <div class="make__body text-size-body  mb-4">
-Take a photo of your pet's exhibits. The photo must be of good quality, and also not have unnecessary items. Then upload a photo to the form below and click the submit button.
+        Take a photo of your pet's exhibits. The photo must be of good quality, and also not have unnecessary items.
+        Then upload a photo to the form below and click the submit button.
       </div>
 
-      <div class="make__img mb-4">
+      <div class="make__img mb-2">
         <div class="img__header text-size-body text-center fw-bold">
           Preview of photo
         </div>
-        <div class="img__container d-flex justify-content-center" >
+        <div class="img__container d-flex justify-content-center">
           <img v-if="!file" class="img__container__item w-100" src="http://dummyimage.com/400"/>
           <img v-else v-bind:src="imagePreview" v-show="showPreview" style="max-width: 400px; height: auto"/>
         </div>
       </div>
+
+      <div class="login__error w-100 mb-2">
+        <b-alert v-if="error_massage" show dismissible>
+          <div>{{ error_massage }}</div>
+        </b-alert>
+      </div>
+
 
       <div class="make__form w-100 mb-2 border border-primary p-2 rounded">
         <div class="form__photo mb-2">
@@ -35,7 +37,6 @@ Take a photo of your pet's exhibits. The photo must be of good quality, and also
           </label>
           <input v-on:change="handleFileUpload()" class="create_body__file form-control" type="file" id="file"
                  ref="file" multiple>
-
         </div>
 
         <div class="form__button my-2">
@@ -43,7 +44,6 @@ Take a photo of your pet's exhibits. The photo must be of good quality, and also
             Upload
           </button>
         </div>
-
 
 
       </div>
@@ -58,7 +58,7 @@ import Navbar from "@/components/Navbar";
 
 export default {
   name: "QuickStartView",
-    components: {
+  components: {
     Navbar
   },
   mixins: [goToSomewhere],

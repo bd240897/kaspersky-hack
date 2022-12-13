@@ -2,10 +2,10 @@
 
   <modal-window ref="modal">
     <template v-slot:title>
-      <h3 class="">Здоров</h3>
+      <h3 class="">Healthy</h3>
     </template>
     <template v-slot:body>
-      <p class="">С вашем питомцем все хорошо, дополнительные обследования не требуются</p>
+      <p class="">Everything seems fine</p>
     </template>
   </modal-window>
 
@@ -16,7 +16,7 @@
       </div>
       <div class="element__icon__body col-10 d-flex flex-column justify-content-center align-items-center">
         <div class="element__icon__body__disease fw-bold h2">
-          С вашим потомцем все впорядке!
+          Everything seems fine!
         </div>
       </div>
     </div>
