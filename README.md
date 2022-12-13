@@ -103,6 +103,8 @@ https://webdevblog.ru/kak-ispolzovat-django-postgresql-i-docker/
   - api - папка с настройками проекта
   - ...
   - pet - приложение с логикой
+  - filter - приложение с фильтром входной картиной is_this_poop? 
+  - predictor - набор нейронок для предсказания болезней parasites & blood 
     - ...
   - example_data - тестовые данные для БД
 - **frontend** - Файлы для фронтенда (vue)
