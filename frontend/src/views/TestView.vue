@@ -1,5 +1,5 @@
 <template>
-
+  {{test}}
 <div>
   <b-button v-b-toggle.collapse-1 variant="primary">Toggle Collapse</b-button>
   <b-collapse id="collapse-1" class="mt-2">
@@ -61,6 +61,11 @@ export default {
   methods: {
     showModal: function () {
       this.$refs.modal.show = true
+    }
+  },
+  computed:{
+    test() {
+      return process.env.VUE_APP_ROOT_API
     }
   }
 }
