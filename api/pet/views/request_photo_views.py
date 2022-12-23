@@ -276,8 +276,10 @@ class QuickPhotoPredictionView(generics.GenericAPIView):
         # открытие
         try:
             img = Image.open(file)
+            print("img", img)
             img.verify()
-        except:
+        except Exception as e:
+            print("Exception", e)
             raise ParseError("Unsupported image type")
 
         # cохраняем в БД
